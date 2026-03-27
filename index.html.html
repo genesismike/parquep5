@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ParqueP5 — Estacionamento no Aeroporto de Lisboa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E10600;--red-dark:#b80500;--black:#000;--black-soft:#0f0f0f;--black-mid:#1a1a1a;--white:#fff;--off-white:#f5f5f5;--gray:#888;--text:#1a1a1a}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--white);color:var(--text);line-height:1.6}
+nav{background:var(--black);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--red)}
+.logo{display:flex;flex-direction:column;text-decoration:none}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--white);letter-spacing:1px;text-transform:uppercase;line-height:1}
+.logo-text span{color:var(--red)}
+.logo-line{width:100%;height:3px;background:var(--red);margin-top:3px}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-phone{color:var(--white);text-decoration:none;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;transition:color .2s}
+.nav-phone:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:var(--white);text-decoration:none;font-size:13px;font-weight:700;padding:10px 22px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;transition:background .2s;cursor:pointer}
+.nav-cta:hover{background:var(--red-dark)}
+.hero{background:var(--black);padding:80px 48px 0;position:relative;overflow:hidden}
+.hero::after{content:'P5';position:absolute;right:-20px;bottom:-40px;font-family:'Barlow Condensed',sans-serif;font-size:400px;font-weight:900;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;user-select:none}
+.hero-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:64px;align-items:start}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(225,6,0,.15);border:1px solid rgba(225,6,0,.5);color:#ff6b66;padding:6px 16px;border-radius:2px;font-size:12px;font-weight:700;margin-bottom:24px;letter-spacing:1.5px;text-transform:uppercase}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,72px);font-weight:900;color:var(--white);line-height:1;margin-bottom:20px;text-transform:uppercase}
+.hero h1 em{font-style:italic;color:var(--red)}
+.hero-sub{color:rgba(255,255,255,.6);font-size:17px;margin-bottom:44px;max-width:460px;font-weight:400;line-height:1.7}
+.trust-row{display:flex;border:1px solid rgba(255,255,255,.1);border-radius:4px;overflow:hidden;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:13px;font-weight:600;padding:12px 18px;border-right:1px solid rgba(255,255,255,.1);text-transform:uppercase;letter-spacing:.5px}
+.trust-item:last-child{border-right:none}
+.trust-icon{color:var(--red)}
+.form-card{background:var(--white);border-radius:6px;padding:28px 26px;box-shadow:0 0 0 1px rgba(0,0,0,.08),0 32px 80px rgba(0,0,0,.6);position:relative;z-index:2;margin-bottom:-50px}
+.form-card-header{border-left:4px solid var(--red);padding-left:14px;margin-bottom:18px}
+.form-card h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--black);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.form-card-header p{font-size:13px;color:var(--gray)}
+.step-indicator{display:flex;gap:6px;margin-bottom:16px}
+.step-dot{height:4px;border-radius:2px;flex:1;background:#e8e8e8;transition:background .3s}
+.step-dot.active{background:var(--red)}
+.step-dot.done{background:var(--red-dark)}
+.form-step{display:none}
+.form-step.active{display:block}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.form-error{background:#fff0f0;border:1.5px solid var(--red);color:var(--red);border-radius:4px;padding:10px 14px;font-size:13px;font-weight:600;margin-bottom:10px;display:none}
+.form-error.visible{display:block}
+.form-group{margin-bottom:11px}
+.form-group label{display:block;font-size:11px;font-weight:700;color:var(--black);margin-bottom:4px;letter-spacing:.8px;text-transform:uppercase}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 13px;border:1.5px solid #e0e0e0;border-radius:4px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--text);background:#fafafa;transition:border-color .2s,box-shadow .2s;outline:none;resize:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(225,6,0,.07);background:white}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.price-display{background:var(--black);border-radius:6px;padding:14px 16px;margin:12px 0;display:none}
+.price-display.visible{display:block}
+.price-main{display:flex;align-items:baseline;justify-content:space-between}
+.price-label{font-size:12px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px}
+.price-value{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--white);line-height:1}
+.price-value span{font-size:18px;color:var(--red)}
+.price-breakdown{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+.price-breakdown strong{color:rgba(255,255,255,.8)}
+.price-note{font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;font-style:italic}
+.extras-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.extra-option{position:relative}
+.extra-option input[type=checkbox]{position:absolute;opacity:0;width:0;height:0}
+.extra-label{display:flex;flex-direction:column;gap:3px;border:1.5px solid #e0e0e0;border-radius:6px;padding:11px 13px;cursor:pointer;transition:border-color .2s,background .2s;background:#fafafa;position:relative}
+.extra-label:hover{border-color:#bbb;background:white}
+.extra-option input:checked+.extra-label{border-color:var(--red);background:#fff5f5}
+.extra-icon{font-size:20px}
+.extra-name{font-size:13px;font-weight:700;color:var(--black);line-height:1.2}
+.extra-price{font-size:12px;color:var(--red);font-weight:700}
+.extra-check{position:absolute;top:8px;right:10px;width:18px;height:18px;background:#e0e0e0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;transition:background .2s}
+.extra-option input:checked+.extra-label .extra-check{background:var(--red)}
+.form-divider{text-align:center;font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:1.5px;margin:8px 0 11px;position:relative}
+.form-divider::before,.form-divider::after{content:'';position:absolute;top:50%;width:36%;height:1px;background:#e8e8e8}
+.form-divider::before{left:0}.form-divider::after{right:0}
+.form-nav{display:flex;gap:10px;margin-top:14px}
+.btn-back{flex:0 0 auto;padding:13px 18px;border:1.5px solid #e0e0e0;background:transparent;color:var(--gray);border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.btn-back:hover{border-color:var(--black);color:var(--black)}
+.btn-next,.btn-reserve{flex:1;padding:14px;background:var(--red);color:var(--white);border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;cursor:pointer;transition:background .2s,transform .1s;text-transform:uppercase;letter-spacing:.5px}
+.btn-next:hover,.btn-reserve:hover{background:var(--red-dark);transform:translateY(-1px)}
+.form-note{text-align:center;font-size:12px;color:var(--gray);margin-top:10px}
+.stats-strip{background:var(--red);padding:0 48px;margin-top:50px}
+.stats-inner{max-width:1140px;margin:0 auto;display:flex;justify-content:space-around}
+.stat-item{text-align:center;padding:24px 20px;border-right:1px solid rgba(255,255,255,.2);flex:1}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--white);line-height:1;margin-bottom:4px}
+.stat-label{font-size:12px;font-weight:600;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:1px}
+.features{background:var(--off-white);padding:80px 48px}
+.features-inner{max-width:1140px;margin:0 auto}
+.section-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:10px}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;color:var(--black);margin-bottom:44px;line-height:1.1;text-transform:uppercase}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{background:var(--white);border-radius:4px;padding:28px 24px;border:1px solid #e8e8e8;border-top:3px solid #e8e8e8;transition:border-top-color .2s,box-shadow .2s,transform .2s}
+.feature-card:hover{border-top-color:var(--red);box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-2px)}
+.feature-icon{font-size:28px;margin-bottom:14px;display:block}
+.feature-card h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--black);margin-bottom:8px;text-transform:uppercase}
+.feature-card p{font-size:14px;color:#666;line-height:1.6}
+.pricing{padding:80px 48px;background:var(--black)}
+.pricing-inner{max-width:1140px;margin:0 auto}
+.pricing .section-label{color:var(--red)}
+.pricing .section-title{color:var(--white);margin-bottom:48px}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.price-card{border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:32px 28px;background:var(--black-mid)}
+.price-card.featured{border-color:var(--red);background:var(--black-soft);position:relative}
+.price-card.featured::before{content:'Mais popular';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red);color:white;font-size:11px;font-weight:700;padding:4px 16px;border-radius:2px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;font-family:'Barlow Condensed',sans-serif}
+.price-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gray);margin-bottom:8px}
+.price-card h3{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--white);margin-bottom:6px;text-transform:uppercase}
+.price-desde{font-size:13px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.price-valor{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;color:var(--white);line-height:1;margin-bottom:24px}
+.price-valor span{font-size:18px;color:rgba(255,255,255,.4);margin-left:4px}
+.price-features{list-style:none;margin-bottom:28px}
+.price-features li{font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.07)}
+.price-features li:last-child{border:none}
+.check{color:var(--red);font-size:14px;flex-shrink:0;font-weight:700}
+.btn-price{width:100%;padding:13px;border:2px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.8);border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.5px}
+.btn-price:hover{border-color:white;color:white}
+.btn-price.red{background:var(--red);border-color:var(--red);color:white}
+.btn-price.red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+.cta-strip{background:var(--red);padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-strip::before{content:'✈';position:absolute;left:5%;top:50%;transform:translateY(-50%);font-size:120px;opacity:.08;pointer-events:none}
+.cta-strip::after{content:'✈';position:absolute;right:5%;top:50%;transform:translateY(-50%) scaleX(-1);font-size:120px;opacity:.08;pointer-events:none}
+.cta-strip h2{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:var(--white);margin-bottom:10px;text-transform:uppercase}
+.cta-strip p{color:rgba(255,255,255,.75);font-size:17px;margin-bottom:36px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-white{padding:16px 40px;background:var(--white);color:var(--red);border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;cursor:pointer;text-decoration:none;text-transform:uppercase;transition:background .2s}
+.btn-white:hover{background:#f0f0f0}
+.btn-outline-white{padding:16px 40px;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;text-decoration:none;text-transform:uppercase;transition:border-color .2s}
+.btn-outline-white:hover{border-color:white}
+footer{background:#000;border-top:3px solid var(--red);padding:36px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-info{color:rgba(255,255,255,.4);font-size:13px;line-height:1.8}
+.footer-info strong{color:rgba(255,255,255,.7)}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;transition:color .2s}
+.footer-links a:hover{color:var(--red)}
+/* THANK YOU PAGE */
+.ty-page{display:none}
+body.ty-active nav .nav-cta{display:none}
+body.ty-active .hero,body.ty-active .stats-strip,body.ty-active .features,body.ty-active .pricing,body.ty-active .cta-strip,body.ty-active footer{display:none}
+.ty-hero{background:var(--black);padding:56px 48px 52px;position:relative;overflow:hidden;border-bottom:3px solid var(--red)}
+.ty-hero::after{content:'✓';position:absolute;right:40px;bottom:-30px;font-size:260px;font-weight:900;color:rgba(225,6,0,.05);line-height:1;pointer-events:none}
+.ty-hero-inner{max-width:820px;margin:0 auto}
+.ty-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(225,6,0,.15);border:1px solid rgba(225,6,0,.4);color:#ff6b66;padding:8px 20px;border-radius:2px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px}
+.ty-pulse{width:8px;height:8px;background:var(--red);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.ty-hero h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,64px);font-weight:900;color:var(--white);line-height:1;text-transform:uppercase;margin-bottom:14px}
+.ty-hero h2 em{color:var(--red);font-style:italic}
+.ty-hero p{color:rgba(255,255,255,.55);font-size:16px;max-width:540px;line-height:1.7}
+.ty-main{max-width:820px;margin:0 auto;padding:40px 48px 80px}
+.ty-ref{background:var(--red);border-radius:6px;padding:20px 28px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ty-ref-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.ty-ref-num{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--white);letter-spacing:2px}
+.ty-ref-note{font-size:13px;color:rgba(255,255,255,.65);max-width:320px;line-height:1.5}
+.ty-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.ty-card{background:var(--white);border-radius:6px;padding:24px;border:1px solid #e8e8e8}
+.ty-card-full{grid-column:1/-1}
+.ty-card-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0f0f0}
+.ty-row{margin-bottom:12px}
+.ty-row:last-child{margin-bottom:0}
+.ty-key{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px}
+.ty-val{font-size:15px;font-weight:600;color:var(--text)}
+.ty-val.big{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:900;color:var(--black)}
+.ty-flight{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;background:var(--off-white);border-radius:6px;padding:14px;margin-bottom:10px}
+.ty-flight:last-child{margin-bottom:0}
+.ty-fend{display:flex;flex-direction:column;gap:2px}
+.ty-fend.right{text-align:right}
+.ty-fcode{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1px}
+.ty-fdt{font-size:14px;font-weight:700;color:var(--black)}
+.ty-flabel{font-size:11px;color:var(--gray);font-weight:600;text-transform:uppercase}
+.ty-arrow{display:flex;flex-direction:column;align-items:center;gap:3px}
+.ty-arrow svg{width:70px;height:14px}
+.ty-arrow span{font-size:10px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px}
+.ty-total{background:var(--black);border-radius:6px;padding:24px;margin-bottom:16px}
+.ty-total-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ty-total-lbl{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.ty-total-sub{font-size:12px;color:rgba(255,255,255,.3)}
+.ty-total-val{font-family:'Barlow Condensed',sans-serif;font-size:46px;font-weight:900;color:var(--white);line-height:1}
+.ty-total-val sup{font-size:20px;color:var(--red)}
+.ty-breakdown{display:flex;flex-direction:column;gap:8px}
+.ty-brow{display:flex;justify-content:space-between;font-size:14px;color:rgba(255,255,255,.6)}
+.ty-brow strong{color:rgba(255,255,255,.85)}
+.ty-brow span{font-weight:700;color:var(--white)}
+.ty-total-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:12px;font-style:italic}
+.ty-steps{background:var(--white);border-radius:6px;padding:24px;border:1px solid #e8e8e8;margin-bottom:16px}
+.ty-step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #f5f5f5}
+.ty-step:last-child{border-bottom:none;padding-bottom:0}
+.ty-step:first-child{padding-top:0}
+.ty-step-num{width:30px;height:30px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:var(--white);flex-shrink:0;margin-top:2px}
+.ty-step h4{font-size:14px;font-weight:700;color:var(--black);margin-bottom:2px}
+.ty-step p{font-size:13px;color:var(--gray);line-height:1.5}
+.ty-loc{background:var(--white);border-radius:6px;padding:24px;border:1px solid #e8e8e8;margin-bottom:28px}
+.ty-loc-addr{font-size:14px;color:var(--text);line-height:1.8;margin-bottom:14px}
+.ty-loc-addr strong{color:var(--black)}
+.ty-dir-links{display:flex;gap:10px;flex-wrap:wrap}
+.ty-dir-link{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:4px;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s}
+.ty-dir-link.gm{background:var(--black);color:var(--white)}
+.ty-dir-link.gm:hover{background:#222}
+.ty-dir-link.wz{background:#08d;color:var(--white)}
+.ty-dir-link.wz:hover{background:#069}
+.ty-cta{display:flex;gap:10px;flex-wrap:wrap}
+.ty-btn-p{padding:15px 28px;background:var(--red);color:var(--white);border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;cursor:pointer;text-decoration:none;text-transform:uppercase;transition:background .2s}
+.ty-btn-p:hover{background:var(--red-dark)}
+.ty-btn-s{padding:15px 28px;background:transparent;color:var(--black);border:2px solid #ddd;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;cursor:pointer;text-decoration:none;text-transform:uppercase;transition:all .2s}
+.ty-btn-s:hover{border-color:var(--black)}
+@media(max-width:960px){nav,.hero,.stats-strip,.features,.pricing,.cta-strip,footer{padding-left:24px;padding-right:24px}.hero-inner{grid-template-columns:1fr}.hero{padding-top:60px}.features-grid,.pricing-grid{grid-template-columns:1fr 1fr}.stats-inner{flex-wrap:wrap}.stat-item{min-width:50%}}
+@media(max-width:600px){.features-grid,.pricing-grid,.extras-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}footer{flex-direction:column}.trust-row{flex-direction:column}.trust-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}.trust-item:last-child{border-bottom:none}.ty-grid{grid-template-columns:1fr}.ty-card-full{grid-column:1}.ty-cta{flex-direction:column}.ty-hero,.ty-main{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo"><span class="logo-text">PARQUE <span>P5</span></span><div class="logo-line"></div></div>
+  <div class="nav-right">
+    <a class="nav-phone" href="tel:+351218488305">&#128222; +351 218 488 305</a>
+    <button class="nav-cta" onclick="scrollToForm()">Reservar</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">&#9992;&#65039; &nbsp;Aeroporto de Lisboa &mdash; Prior Velho</div>
+      <h1>Estacione<br>perto do <em>aeroporto.</em><br>Sem complica&ccedil;&otilde;es.</h1>
+      <p class="hero-sub">Transfer gratuito 24h inclu&iacute;do. Coberto, toldo ou descoberto. Pagamento s&oacute; no regresso.</p>
+      <div class="trust-row">
+        <div class="trust-item"><span class="trust-icon">&#128336;</span> 24h / 365 dias</div>
+        <div class="trust-item"><span class="trust-icon">&#128651;</span> Transfer gr&aacute;tis</div>
+        <div class="trust-item"><span class="trust-icon">&#128249;</span> CCTV</div>
+        <div class="trust-item"><span class="trust-icon">&#128179;</span> Paga no regresso</div>
+      </div>
+    </div>
+    <div class="form-card" id="form-card">
+      <div class="form-card-header"><h2>Solicitar Reserva</h2><p>Confirmamos em menos de 1 hora</p></div>
+      <div id="main-form">
+        <div class="step-indicator">
+          <div class="step-dot active" id="dot-1"></div>
+          <div class="step-dot" id="dot-2"></div>
+          <div class="step-dot" id="dot-3"></div>
+        </div>
+        <!-- PASSO 1 -->
+        <div class="form-step active" id="step-1">
+          <div class="step-title">Passo 1 / 3 &mdash; Os seus dados</div>
+          <div id="err-1" class="form-error"></div>
+          <div class="form-group"><label>Nome completo *</label><input type="text" id="nome" placeholder="O seu nome"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Telefone *</label><input type="tel" id="telefone" placeholder="+351 9xx xxx xxx"></div>
+            <div class="form-group"><label>Email *</label><input type="email" id="email" placeholder="email@exemplo.pt"></div>
+          </div>
+          <div class="form-group"><label>Matr&iacute;cula</label><input type="text" id="matricula" placeholder="AA-00-BB"></div>
+          <div class="form-nav"><button class="btn-next" onclick="goToStep(2)">Seguinte &rarr;</button></div>
+        </div>
+        <!-- PASSO 2 -->
+        <div class="form-step" id="step-2">
+          <div class="step-title">Passo 2 / 3 &mdash; Estadia e servi&ccedil;os</div>
+          <div id="err-2" class="form-error"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Data de entrada *</label><input type="date" id="entrada" onchange="calcularPreco()"></div>
+            <div class="form-group"><label>Hora de entrada</label><input type="time" id="hora-entrada"></div>
+          </div>
+          <div class="form-group"><label>N&ordm; voo de partida</label><input type="text" id="voo-partida" placeholder="ex: TP234" oninput="this.value=this.value.toUpperCase()"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Data de sa&iacute;da *</label><input type="date" id="saida" onchange="calcularPreco()"></div>
+            <div class="form-group"><label>Hora de sa&iacute;da</label><input type="time" id="hora-saida"></div>
+          </div>
+          <div class="form-group"><label>N&ordm; voo de regresso</label><input type="text" id="voo-regresso" placeholder="ex: TP235" oninput="this.value=this.value.toUpperCase()"></div>
+          <div class="form-group"><label>Tipo de estacionamento *</label>
+            <select id="tipo" onchange="calcularPreco()">
+              <option value="">Selecione...</option>
+              <option value="Descoberto">Descoberto</option>
+              <option value="Toldo">Toldo</option>
+              <option value="Coberto">Coberto</option>
+            </select>
+          </div>
+          <div class="price-display" id="price-display">
+            <div class="price-main">
+              <div><div class="price-label">Estimativa de pre&ccedil;o</div><div class="price-value"><span>&euro;</span><span id="price-total">0</span></div></div>
+              <div style="text-align:right"><div class="price-label">Dias de calend&aacute;rio</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:rgba(255,255,255,.5)" id="price-days">0</div></div>
+            </div>
+            <div class="price-breakdown" id="price-breakdown"></div>
+            <div class="price-note">* Valor estimado. O pre&ccedil;o final &eacute; confirmado na reserva.</div>
+          </div>
+          <div class="form-divider">servi&ccedil;os extra (opcional)</div>
+          <div class="extras-grid">
+            <div class="extra-option"><input type="checkbox" id="extra-lavagem" onchange="calcularPreco()"><label class="extra-label" for="extra-lavagem"><span class="extra-icon">&#129529;</span><span class="extra-name">Lavagem Completa</span><span class="extra-price">+ &euro;30</span><div class="extra-check">&#10003;</div></label></div>
+            <div class="extra-option"><input type="checkbox" id="extra-eletrico" onchange="calcularPreco()"><label class="extra-label" for="extra-eletrico"><span class="extra-icon">&#9889;</span><span class="extra-name">Carregamento El&eacute;trico</span><span class="extra-price">+ &euro;25</span><div class="extra-check">&#10003;</div></label></div>
+            <div class="extra-option"><input type="checkbox" id="extra-chave" onchange="calcularPreco()"><label class="extra-label" for="extra-chave"><span class="extra-icon">&#128273;</span><span class="extra-name">Leve a Chave</span><span class="extra-price">+ &euro;15</span><div class="extra-check">&#10003;</div></label></div>
+          </div>
+          <div class="form-nav">
+            <button class="btn-back" onclick="goToStep(1)">&larr; Voltar</button>
+            <button class="btn-next" onclick="goToStep(3)">Seguinte &rarr;</button>
+          </div>
+        </div>
+        <!-- PASSO 3 -->
+        <div class="form-step" id="step-3">
+          <div class="step-title">Passo 3 / 3 &mdash; Confirma&ccedil;&atilde;o</div>
+          <div id="summary" style="background:#f8f8f8;border-radius:6px;padding:16px;margin-bottom:12px;font-size:13px;line-height:2;border-left:3px solid var(--red)"></div>
+          <div class="form-group"><label>Notas adicionais</label><textarea id="notas" rows="2" placeholder="Alguma informa&ccedil;&atilde;o extra..."></textarea></div>
+          <div class="form-nav">
+            <button class="btn-back" onclick="goToStep(2)">&larr; Voltar</button>
+            <button class="btn-reserve" id="btn-submit" onclick="submitForm()">Confirmar Reserva &rarr;</button>
+          </div>
+          <p class="form-note">&#128274; Os seus dados est&atilde;o seguros. Resposta em menos de 1h.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">24H</div><div class="stat-label">Transfer gratuito</div></div>
+    <div class="stat-item"><div class="stat-num">365</div><div class="stat-label">Dias por ano</div></div>
+    <div class="stat-item"><div class="stat-num">5'</div><div class="stat-label">Do terminal</div></div>
+    <div class="stat-item"><div class="stat-num">&#10003;</div><div class="stat-label">Pagamento no regresso</div></div>
+  </div>
+</div>
+
+<section class="features">
+  <div class="features-inner">
+    <p class="section-label">Servi&ccedil;os inclu&iacute;dos</p>
+    <h2 class="section-title">Tudo o que precisa<br>para viajar tranquilo</h2>
+    <div class="features-grid">
+      <div class="feature-card"><span class="feature-icon">&#128651;</span><h3>Transfer Gratuito 24h</h3><p>Liga&ccedil;&atilde;o cont&iacute;nua entre o ParqueP5 e o terminal, a qualquer hora do dia ou da noite.</p></div>
+      <div class="feature-card"><span class="feature-icon">&#128273;</span><h3>Leve a Chave</h3><p>Entregue a viatura nas nossas instala&ccedil;&otilde;es e mantenha a chave consigo durante a viagem.</p></div>
+      <div class="feature-card"><span class="feature-icon">&#129529;</span><h3>Lavagem Completa</h3><p>Regresse com o carro limpo. Exterior e interior &mdash; conforme a sua prefer&ecirc;ncia.</p></div>
+      <div class="feature-card"><span class="feature-icon">&#9889;</span><h3>Carregamento El&eacute;trico</h3><p>Carregue o ve&iacute;culo durante a estadia. Regresse com autonomia total.</p></div>
+      <div class="feature-card"><span class="feature-icon">&#128249;</span><h3>CCTV Permanente</h3><p>Vigil&acirc;ncia cont&iacute;nua 24h com c&acirc;meras de seguran&ccedil;a em todo o per&iacute;metro.</p></div>
+      <div class="feature-card"><span class="feature-icon">&#128179;</span><h3>Pagamento no Regresso</h3><p>N&atilde;o paga nada &agrave; chegada. O pagamento &eacute; efetuado quando regressar da viagem.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="pricing-inner">
+    <p class="section-label">Tarifas</p>
+    <h2 class="section-title">Escolha o seu<br>tipo de estacionamento</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-type">Op&ccedil;&atilde;o econ&oacute;mica</div><h3>Descoberto</h3>
+        <div class="price-desde">Desde</div><div class="price-valor">&euro;5<span>/dia</span></div>
+        <ul class="price-features"><li><span class="check">&#10003;</span> Transfer gratuito 24h</li><li><span class="check">&#10003;</span> CCTV permanente</li><li><span class="check">&#10003;</span> Pagamento no regresso</li></ul>
+        <button class="btn-price" onclick="scrollToForm()">Reservar</button>
+      </div>
+      <div class="price-card featured">
+        <div class="price-type">Mais conforto</div><h3>Toldo</h3>
+        <div class="price-desde">Desde</div><div class="price-valor">&euro;6<span>/dia</span></div>
+        <ul class="price-features"><li><span class="check">&#10003;</span> Transfer gratuito 24h</li><li><span class="check">&#10003;</span> Protegido do sol e chuva</li><li><span class="check">&#10003;</span> CCTV permanente</li></ul>
+        <button class="btn-price red" onclick="scrollToForm()">Reservar</button>
+      </div>
+      <div class="price-card">
+        <div class="price-type">M&aacute;xima prote&ccedil;&atilde;o</div><h3>Coberto</h3>
+        <div class="price-desde">Desde</div><div class="price-valor">&euro;8<span>/dia</span></div>
+        <ul class="price-features"><li><span class="check">&#10003;</span> Transfer gratuito 24h</li><li><span class="check">&#10003;</span> Totalmente coberto</li><li><span class="check">&#10003;</span> CCTV permanente</li></ul>
+        <button class="btn-price" onclick="scrollToForm()">Reservar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <h2>Pronto para reservar?</h2>
+  <p>Estacionamento junto ao Aeroporto de Lisboa &mdash; Transfer gr&aacute;tis inclu&iacute;do</p>
+  <div class="cta-buttons">
+    <button class="btn-white" onclick="scrollToForm()">Fazer Reserva</button>
+    <a href="tel:+351218488305" class="btn-outline-white">&#128222; +351 218 488 305</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-info"><strong>PARQUE P5</strong><br>Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho<br><a href="mailto:reservas@parquep5.pt" style="color:rgba(255,255,255,.4);text-decoration:none">reservas@parquep5.pt</a></div>
+  <div class="footer-links"><a href="#">Termos e Condi&ccedil;&otilde;es</a><a href="#">Pol&iacute;tica de Privacidade</a><a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclama&ccedil;&otilde;es</a></div>
+</footer>
+
+<!-- THANK YOU PAGE -->
+<div class="ty-page" id="ty-page">
+  <div class="ty-hero"><div class="ty-hero-inner">
+    <div class="ty-badge"><span class="ty-pulse"></span> Pedido recebido</div>
+    <h2>Obrigado,<br><em id="ty-nome">...</em></h2>
+    <p>O seu pedido foi recebido. A nossa equipa confirma em menos de 1 hora por telefone ou email.</p>
+  </div></div>
+  <div class="ty-main">
+    <div class="ty-ref">
+      <div><div class="ty-ref-label">Refer&ecirc;ncia do pedido</div><div class="ty-ref-num" id="ty-ref">P5-000000</div></div>
+      <div class="ty-ref-note">Guarde esta refer&ecirc;ncia. Entraremos em contacto brevemente para confirmar.</div>
+    </div>
+    <div class="ty-grid">
+      <div class="ty-card">
+        <div class="ty-card-label">&#128100; Dados do cliente</div>
+        <div class="ty-row"><div class="ty-key">Nome</div><div class="ty-val big" id="ty-d-nome">&mdash;</div></div>
+        <div class="ty-row"><div class="ty-key">Telefone</div><div class="ty-val" id="ty-d-tel">&mdash;</div></div>
+        <div class="ty-row"><div class="ty-key">Email</div><div class="ty-val" id="ty-d-email">&mdash;</div></div>
+        <div class="ty-row" id="ty-row-mat"><div class="ty-key">Matr&iacute;cula</div><div class="ty-val" id="ty-d-mat">&mdash;</div></div>
+      </div>
+      <div class="ty-card">
+        <div class="ty-card-label">&#127359; Estacionamento</div>
+        <div class="ty-row"><div class="ty-key">Tipo</div><div class="ty-val big" id="ty-d-tipo">&mdash;</div></div>
+        <div class="ty-row"><div class="ty-key">Dura&ccedil;&atilde;o</div><div class="ty-val big" id="ty-d-dias">&mdash;</div></div>
+        <div class="ty-row"><div class="ty-key">Extras</div><div class="ty-val" id="ty-d-extras">&mdash;</div></div>
+        <div class="ty-row" id="ty-row-notas" style="display:none"><div class="ty-key">Notas</div><div class="ty-val" id="ty-d-notas">&mdash;</div></div>
+      </div>
+      <div class="ty-card ty-card-full">
+        <div class="ty-card-label">&#9992;&#65039; Informa&ccedil;&atilde;o de voo</div>
+        <div class="ty-flight">
+          <div class="ty-fend"><span class="ty-flabel">Entrega do ve&iacute;culo</span><span class="ty-fdt" id="ty-entrada">&mdash;</span><span class="ty-fcode" id="ty-voo-p"></span></div>
+          <div class="ty-arrow"><svg viewBox="0 0 70 14" fill="none"><line x1="0" y1="7" x2="56" y2="7" stroke="#ddd" stroke-width="1.5"/><polygon points="56,3 70,7 56,11" fill="#ddd"/></svg><span>Partida</span></div>
+          <div class="ty-fend right"><span class="ty-flabel">Aeroporto de Lisboa</span><span class="ty-fdt">LIS</span><span class="ty-fcode" style="color:var(--gray)">Prior Velho</span></div>
+        </div>
+        <div class="ty-flight">
+          <div class="ty-fend"><span class="ty-flabel">Aeroporto de Lisboa</span><span class="ty-fdt">LIS</span><span class="ty-fcode" style="color:var(--gray)">Prior Velho</span></div>
+          <div class="ty-arrow"><svg viewBox="0 0 70 14" fill="none"><line x1="14" y1="7" x2="70" y2="7" stroke="#ddd" stroke-width="1.5"/><polygon points="14,3 0,7 14,11" fill="#ddd"/></svg><span>Regresso</span></div>
+          <div class="ty-fend right"><span class="ty-flabel">Recolha do ve&iacute;culo</span><span class="ty-fdt" id="ty-saida">&mdash;</span><span class="ty-fcode" id="ty-voo-r"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ty-total">
+      <div class="ty-total-top">
+        <div><div class="ty-total-lbl">Estimativa de valor</div><div class="ty-total-sub">Pagamento no regresso &middot; Sujeito a confirma&ccedil;&atilde;o</div></div>
+        <div class="ty-total-val"><sup>&euro;</sup><span id="ty-total-num">&mdash;</span></div>
+      </div>
+      <div class="ty-breakdown" id="ty-breakdown"></div>
+      <div class="ty-total-note">* N&atilde;o &eacute; necess&aacute;rio qualquer pagamento antecipado. O pagamento efectua-se no regresso da viagem.</div>
+    </div>
+    <div class="ty-steps">
+      <div class="ty-card-label">&#128203; O que acontece a seguir</div>
+      <div class="ty-step"><div class="ty-step-num">1</div><div><h4>Confirma&ccedil;&atilde;o em menos de 1 hora</h4><p>A nossa equipa contacta-o por telefone ou email para confirmar a disponibilidade.</p></div></div>
+      <div class="ty-step"><div class="ty-step-num">2</div><div><h4>No dia da partida &mdash; dirija-se ao ParqueP5</h4><p>Chegue com a antecedência necessária. Fazemos o check-in e acompanhamo-lo ao terminal.</p></div></div>
+      <div class="ty-step"><div class="ty-step-num">3</div><div><h4>Transfer gratuito para o terminal</h4><p>Partida imediata ap&oacute;s o check-in. Transfer cont&iacute;nuo 24h por dia.</p></div></div>
+      <div class="ty-step"><div class="ty-step-num">4</div><div><h4>No regresso &mdash; ligue quando aterrar</h4><p>Ligue para <strong>+351 218 488 305</strong>. O transfer vem buscá-lo e a viatura estar&aacute; pronta. Pagamento feito neste momento.</p></div></div>
+    </div>
+    <div class="ty-loc">
+      <div class="ty-card-label">&#128205; Como chegar ao ParqueP5</div>
+      <div class="ty-loc-addr"><strong>Rua Fernando Namora, Lote 1</strong><br>Figo Maduro, 2685-397 Prior Velho<br><span style="color:var(--gray)">A 5 minutos do terminal do Aeroporto de Lisboa</span></div>
+      <div class="ty-dir-links">
+        <a class="ty-dir-link gm" href="https://maps.app.goo.gl/VYpCJWYWSTDjhnoQ8" target="_blank">&#128205; Google Maps</a>
+        <a class="ty-dir-link wz" href="https://waze.com/ul?ll=38.7833,-9.1189&navigate=yes" target="_blank">&#128663; Waze</a>
+      </div>
+    </div>
+    <div class="ty-cta">
+      <a class="ty-btn-p" href="tel:+351218488305">&#128222; Ligar agora</a>
+      <button class="ty-btn-s" onclick="window.location.reload()">&#8592; Nova reserva</button>
+    </div>
+  </div>
+</div>
+<script>
+// CONFIG
+var APPS_SCRIPT_URL = "COLA_AQUI_O_URL_DO_APPS_SCRIPT";
+
+// TARIFAS
+var TARIFAS = {
+  "Descoberto": { tabela:[0,14,20,26,32,38,44,50,56,62,68,74,80,86,92,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188], surcharge:6 },
+  "Toldo":      { tabela:[0,15,22,29,36,43,50,57,64,71,78,85,92,99,106,113,120,127,134,141,148,155,162,169,176,183,190,197,204,211,218], surcharge:7 },
+  "Coberto":    { tabela:[0,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,192,200,208,216,224,232,240,248], surcharge:8 }
+};
+
+var currentStep = 1;
+
+function calcularDias(e, s) {
+  var d1 = new Date(e+'T00:00:00'), d2 = new Date(s+'T00:00:00');
+  if (isNaN(d1)||isNaN(d2)||d2<=d1) return 0;
+  return Math.floor((d2-d1)/86400000)+1;
+}
+
+function calcularPreco() {
+  var e = document.getElementById('entrada').value;
+  var s = document.getElementById('saida').value;
+  var t = document.getElementById('tipo').value;
+  var disp = document.getElementById('price-display');
+  if (!e||!s||!t) { disp.classList.remove('visible'); return; }
+  var dias = calcularDias(e,s);
+  if (dias<=0) { disp.classList.remove('visible'); return; }
+  var tar = TARIFAS[t];
+  var base = dias<=30 ? tar.tabela[dias] : tar.tabela[30]+(dias-30)*tar.surcharge;
+  var ext=0, desc=[];
+  if (document.getElementById('extra-lavagem').checked) { ext+=30; desc.push('Lavagem: <strong>€30</strong>'); }
+  if (document.getElementById('extra-eletrico').checked) { ext+=25; desc.push('Carregamento: <strong>€25</strong>'); }
+  if (document.getElementById('extra-chave').checked)    { ext+=15; desc.push('Leve a chave: <strong>€15</strong>'); }
+  document.getElementById('price-total').textContent = (base+ext).toFixed(2).replace('.',',');
+  document.getElementById('price-days').textContent = dias;
+  var bkd = t+' · '+dias+' dia'+(dias>1?'s':'')+': <strong>€'+base.toFixed(2).replace('.',',')+'</strong>';
+  if (dias>30) bkd += ' <span style="color:rgba(255,255,255,.4)">(base €'+tar.tabela[30]+' + '+( dias-30)+' dias × €'+tar.surcharge+')</span>';
+  if (desc.length) bkd += '<br>'+desc.join('<br>');
+  document.getElementById('price-breakdown').innerHTML = bkd;
+  disp.classList.add('visible');
+}
+
+function scrollToForm() {
+  document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
+}
+
+function showErr(step, msg) {
+  var el = document.getElementById('err-'+step);
+  if (!el) return;
+  el.textContent = '⚠ '+msg;
+  el.classList.add('visible');
+}
+function clearErr(step) {
+  var el = document.getElementById('err-'+step);
+  if (el) { el.textContent=''; el.classList.remove('visible'); }
+}
+
+function validate(step) {
+  if (step===1) {
+    var n=document.getElementById('nome').value.trim();
+    var t=document.getElementById('telefone').value.trim();
+    var e=document.getElementById('email').value.trim();
+    if (!n) { showErr(1,'Por favor preencha o nome.'); return false; }
+    if (!t) { showErr(1,'Por favor preencha o telefone.'); return false; }
+    if (!e||e.indexOf('@')<1) { showErr(1,'Por favor preencha um email válido.'); return false; }
+  }
+  if (step===2) {
+    var ent=document.getElementById('entrada').value;
+    var sai=document.getElementById('saida').value;
+    var tip=document.getElementById('tipo').value;
+    if (!ent) { showErr(2,'Por favor indique a data de entrada.'); return false; }
+    if (!sai) { showErr(2,'Por favor indique a data de saída.'); return false; }
+    if (!tip) { showErr(2,'Por favor selecione o tipo de estacionamento.'); return false; }
+    if (calcularDias(ent,sai)<=0) { showErr(2,'A data de saída deve ser posterior à de entrada.'); return false; }
+  }
+  return true;
+}
+
+function goToStep(step) {
+  clearErr(currentStep);
+  if (step > currentStep && !validate(currentStep)) return;
+  for (var i=1;i<=3;i++) {
+    var d=document.getElementById('dot-'+i);
+    d.className='step-dot';
+    if (i<step) d.classList.add('done');
+    else if (i===step) d.classList.add('active');
+  }
+  document.getElementById('step-'+currentStep).classList.remove('active');
+  document.getElementById('step-'+step).classList.add('active');
+  currentStep=step;
+  if (step===3) buildSummary();
+  document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
+}
+
+function fmtDate(v) {
+  if (!v) return '—';
+  var p=v.split('-'); return p[2]+'/'+p[1]+'/'+p[0];
+}
+
+function getExtras() {
+  var ex=[];
+  if (document.getElementById('extra-lavagem').checked) ex.push('Lavagem completa (€30)');
+  if (document.getElementById('extra-eletrico').checked) ex.push('Carregamento elétrico (€25)');
+  if (document.getElementById('extra-chave').checked) ex.push('Leve a chave (€15)');
+  return ex.join(', ')||'Nenhum';
+}
+
+function buildSummary() {
+  var ent=document.getElementById('entrada').value;
+  var sai=document.getElementById('saida').value;
+  var tip=document.getElementById('tipo').value;
+  var dias=calcularDias(ent,sai);
+  var tar=TARIFAS[tip]||{tabela:[0],surcharge:0};
+  var base=dias<=30?tar.tabela[dias]||0:tar.tabela[30]+(dias-30)*tar.surcharge;
+  var ext=0;
+  if (document.getElementById('extra-lavagem').checked) ext+=30;
+  if (document.getElementById('extra-eletrico').checked) ext+=25;
+  if (document.getElementById('extra-chave').checked) ext+=15;
+  var he=document.getElementById('hora-entrada').value;
+  var hs=document.getElementById('hora-saida').value;
+  var vp=document.getElementById('voo-partida').value.trim();
+  var vr=document.getElementById('voo-regresso').value.trim();
+  var nm=document.getElementById('nome').value.trim();
+  var tl=document.getElementById('telefone').value.trim();
+  var em=document.getElementById('email').value.trim();
+  var mt=document.getElementById('matricula').value.trim();
+  var ex2=getExtras();
+  document.getElementById('summary').innerHTML=
+    '<strong style="font-size:14px;color:var(--black)">Resumo da reserva</strong><br><br>'+
+    '👤 <strong>'+nm+'</strong> · 📞 '+tl+'<br>'+
+    '📧 '+em+(mt?' · 🚗 '+mt:'')+'<br><br>'+
+    '📅 <strong>Entrada:</strong> '+fmtDate(ent)+(he?' às '+he:'')+(vp?' · ✈️ '+vp:'')+'<br>'+
+    '📅 <strong>Saída:</strong> '+fmtDate(sai)+(hs?' às '+hs:'')+' <em style="color:var(--gray)">('+dias+' dia'+(dias>1?'s':'')+')</em>'+(vr?' · ✈️ '+vr:'')+'<br>'+
+    '🅿️ <strong>Tipo:</strong> '+tip+'<br>'+
+    '➕ <strong>Extras:</strong> '+ex2+'<br><br>'+
+    '<span style="font-size:15px;font-family:\'Barlow Condensed\',sans-serif;font-weight:900;color:var(--red)">ESTIMATIVA TOTAL: €'+(base+ext).toFixed(2).replace('.',',')+'</span>'+
+    '<span style="font-size:11px;color:var(--gray);display:block;margin-top:2px">* Valor estimado, sujeito a confirmação</span>';
+}
+
+function showThankYou(d) {
+  // Esconder landing
+  document.body.classList.add('ty-active');
+  var hide=['section.hero','div.stats-strip','section.features','section.pricing','section.cta-strip','footer'];
+  hide.forEach(function(sel){ var el=document.querySelector(sel); if(el) el.style.display='none'; });
+  // Mostrar TY
+  document.getElementById('ty-page').style.display='block';
+  window.scrollTo(0,0);
+  // Preencher
+  document.getElementById('ty-nome').textContent=(d.nome||'').split(' ')[0]||'Cliente';
+  document.getElementById('ty-ref').textContent='P5-'+Date.now().toString(36).slice(-4).toUpperCase()+Math.random().toString(36).slice(2,6).toUpperCase();
+  document.getElementById('ty-d-nome').textContent=d.nome||'—';
+  document.getElementById('ty-d-tel').textContent=d.telefone||'—';
+  document.getElementById('ty-d-email').textContent=d.email||'—';
+  if(d.matricula){ document.getElementById('ty-d-mat').textContent=d.matricula; }
+  else { document.getElementById('ty-row-mat').style.display='none'; }
+  document.getElementById('ty-d-tipo').textContent=d.tipo||'—';
+  document.getElementById('ty-d-dias').textContent=d.dias+' dia'+(d.dias>1?'s':'')+' de calendário';
+  document.getElementById('ty-d-extras').textContent=d.extras||'Nenhum';
+  if(d.notas){ document.getElementById('ty-d-notas').textContent=d.notas; document.getElementById('ty-row-notas').style.display='block'; }
+  document.getElementById('ty-entrada').textContent=d.entrada||'—';
+  document.getElementById('ty-saida').textContent=d.saida||'—';
+  document.getElementById('ty-voo-p').textContent=(d.voo_partida&&d.voo_partida!=='-')?'✈ '+d.voo_partida:'';
+  document.getElementById('ty-voo-r').textContent=(d.voo_regresso&&d.voo_regresso!=='-')?'✈ '+d.voo_regresso:'';
+  // Total
+  var num=parseFloat((d.estimativa||'0').replace('€','').replace(',','.'))||0;
+  document.getElementById('ty-total-num').textContent=num.toFixed(2).replace('.',',');
+  var extN=0, brows='';
+  if(d.extras&&d.extras!=='Nenhum'){
+    if(d.extras.indexOf('Lavagem')>=0){extN+=30;brows+='<div class="ty-brow"><strong>Lavagem completa</strong><span>€30,00</span></div>';}
+    if(d.extras.indexOf('Carregamento')>=0){extN+=25;brows+='<div class="ty-brow"><strong>Carregamento elétrico</strong><span>€25,00</span></div>';}
+    if(d.extras.indexOf('Leve a chave')>=0){extN+=15;brows+='<div class="ty-brow"><strong>Leve a chave</strong><span>€15,00</span></div>';}
+  }
+  brows='<div class="ty-brow"><strong>'+d.tipo+' · '+d.dias+' dia'+(d.dias>1?'s':'')+'</strong><span>€'+(num-extN).toFixed(2).replace('.',',')+'</span></div>'+brows;
+  document.getElementById('ty-breakdown').innerHTML=brows;
+}
+
+function submitForm() {
+  var btn=document.getElementById('btn-submit');
+  btn.textContent='A enviar...'; btn.disabled=true;
+  var ent=document.getElementById('entrada').value;
+  var sai=document.getElementById('saida').value;
+  var tip=document.getElementById('tipo').value;
+  var dias=calcularDias(ent,sai);
+  var tar=TARIFAS[tip]||{tabela:[0],surcharge:0};
+  var base=dias<=30?tar.tabela[dias]||0:tar.tabela[30]+(dias-30)*tar.surcharge;
+  var ext=0;
+  if(document.getElementById('extra-lavagem').checked) ext+=30;
+  if(document.getElementById('extra-eletrico').checked) ext+=25;
+  if(document.getElementById('extra-chave').checked) ext+=15;
+  var data={
+    nome:document.getElementById('nome').value.trim(),
+    telefone:document.getElementById('telefone').value.trim(),
+    email:document.getElementById('email').value.trim(),
+    matricula:document.getElementById('matricula').value.trim(),
+    entrada:fmtDate(ent)+(document.getElementById('hora-entrada').value?' às '+document.getElementById('hora-entrada').value:''),
+    voo_partida:document.getElementById('voo-partida').value.trim()||'-',
+    saida:fmtDate(sai)+(document.getElementById('hora-saida').value?' às '+document.getElementById('hora-saida').value:''),
+    voo_regresso:document.getElementById('voo-regresso').value.trim()||'-',
+    dias:dias, tipo:tip, extras:getExtras(),
+    estimativa:'€'+(base+ext).toFixed(2).replace('.',','),
+    notas:document.getElementById('notas').value.trim()
+  };
+  if(APPS_SCRIPT_URL==="COLA_AQUI_O_URL_DO_APPS_SCRIPT"){
+    showThankYou(data); return;
+  }
+  fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(function(){ showThankYou(data); })
+    .catch(function(){ showThankYou(data); });
+}
+</script>
+</body>
+</html>
