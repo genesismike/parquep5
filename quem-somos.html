@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ — ParqueP5</title>
+<title>Quem Somos — ParqueP5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;800&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -116,14 +116,51 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:32px 48px
 .nav-mobile a:last-child{border-bottom:none}
 .nav-mobile.open{display:flex}
 @media(max-width:768px){.nav-links{display:none}.nav-reservar{display:none}.nav-phone{display:none}.nav-burger{display:block}}
+
+.qs-hero{background:var(--black);padding:52px 48px 64px;border-bottom:3px solid var(--red);position:relative;overflow:hidden}
+.qs-hero::after{content:'P5';position:absolute;right:-10px;bottom:-30px;font-family:'Barlow Condensed',sans-serif;font-size:320px;font-weight:900;color:rgba(255,255,255,.03);line-height:1;pointer-events:none}
+.qs-hero-inner{max-width:960px;margin:0 auto;position:relative}
+.qs-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:12px}
+.qs-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,64px);font-weight:900;color:var(--white);text-transform:uppercase;line-height:1;margin-bottom:14px}
+.qs-hero-sub{font-size:15px;color:rgba(255,255,255,.5);max-width:560px;line-height:1.7}
+.stats-band{background:var(--red)}
+.stats-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{padding:28px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.15)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;color:var(--white);line-height:1}
+.stat-lbl{font-size:12px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.qs-main{max-width:960px;margin:0 auto;padding:56px 48px 80px}
+.qs-section{margin-bottom:52px}
+.qs-section-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+.qs-section h2{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:var(--black);text-transform:uppercase;margin-bottom:20px}
+.qs-section p{font-size:15px;color:#555;line-height:1.8;margin-bottom:14px}
+.qs-section p:last-child{margin-bottom:0}
+.qs-divider{border:none;border-top:2px solid var(--border);margin:40px 0}
+.valores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.valor-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:24px}
+.valor-icon{font-size:28px;margin-bottom:12px}
+.valor-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:var(--black);text-transform:uppercase;margin-bottom:6px}
+.valor-text{font-size:13px;color:#666;line-height:1.7}
+.seg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.seg-item{display:flex;gap:14px;align-items:flex-start;background:var(--white);border-radius:8px;border:1px solid var(--border);padding:18px}
+.seg-icon{font-size:22px;flex-shrink:0}
+.seg-text{font-size:14px;color:#555;line-height:1.6}
+.seg-text strong{color:var(--black);display:block;margin-bottom:2px}
+.cta-strip{background:var(--red);padding:56px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-strip h2{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;color:var(--white);text-transform:uppercase;margin-bottom:10px}
+.cta-strip p{color:rgba(255,255,255,.75);font-size:16px;margin-bottom:28px}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-white{padding:15px 36px;background:var(--white);color:var(--red);border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;cursor:pointer;text-decoration:none;text-transform:uppercase}
+.btn-white:hover{background:#f0f0f0}
+.btn-outline-white{padding:15px 36px;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-decoration:none;text-transform:uppercase}
+@media(max-width:768px){.qs-hero,.qs-main,.cta-strip{padding-left:20px;padding-right:20px}.stats-inner{grid-template-columns:repeat(2,1fr)}.stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.15)}.valores-grid{grid-template-columns:1fr}.seg-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <nav>
   <a class="logo" href="index.html"><img src="data:image/png;base64,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QhxGPHJycmJUjWVZ69at++EPf/jCCy+0atXK87yUpX8z1Od9+/b93//93ylTpph6GEbGrr/++v79+//gBz9wXde27aY2brRcKBR65513rr322pQT1jcHs4TERApgogxHKwMScAkR40klz7CABs51nMWyUJDrKKkkU32cBzFrQY7mLAXlw+PasIQFJ5cZFAVLBiloXwjBOt5krQshBgtB6yga0SzrSg0084k1Z/ClMRUyb8S85oEDBw4cONA4/fHtmNH24osvJufzx7L6Lct68803q6urE64140lKaerGGLuoGR2urKxMeT4z5+bmGiVmLFIp5euvv37WWWdt2bLF+CHGTmv0McbqosVzgxMmTHj++ecNcWL0WCQSOf/881977TWjwTJpPF60tNa2bb/xxhsTJ06sra2NL8/YsrXpGxIxkDjMOCiVbNp4o/qdihpckD5LWPk64rl+REU913V93xxR5YV9rlG8WaqPLHxuWbvJ2mbpLy39pRRfStppkQIxWyCFIzksDNZgyVCarHWeB0iLwUcREdpkAYvFZNDX0dRamebkGTNmGPFISIUWQnz00UcbNmxQSqWsg2/y8Hfv3v3uu+/GwmpjMKPcpGZ6npeyw+l3HgNw4MCB5AvNn+3atYtPBjN6bO3atcOHD7/33ntd1zVKzHhEJkI/htgnpg/GqIuvle267rhx41577bXc3NxYpa3y8vJx48b97ne/ixXHT9l4/E+YBWtjQP7+978fM2ZMWVlZfIR+Q6+yGYg1kuJFMyS4gtzPmbObsjlkXc3DtGtfWZqgScLir92FILIhvJAlfqPDZ0fLznUrx7iV50Yrz41WjY1WjXbLf+xXVFvC4SjYbEtm1BcZnSaEPqz1WvYA4QF0FAq/OeXak7cUiH2SoYyZBau8vLyJEyeaIRLflJGo5557Ln1oiLH9nnvuuZR7O7iu26VLl2HDhh0+fDhNh1Ous5k/P/3005QbHUSjUSHEueeeG2/ZGu60vLz85z//+ZAhQxYuXLhz585Y2W0Zh9gnVVVVS5cunTJliqm57XlefDd27doVo0aMqHied9111w0ZMuTBBx/cu3dvysbjf0IIsXfv3oceemjo0KHXXnttzOZMoHyTn0yzN39IGYGlTfUMze/6vpIitvtdJjS7AnR9TanUdpDJZcbXkkgY7BNJJbJ9XaVFROtKravijlrN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fjgSicyePfvtt9/u1KnT4MGDAcydO7dPnz4jR46MRCIXXHBB7969+/XrN2/evHnz5rVp08YIxk9+8pPVq1ebOMlf/vKX8+bNM7UVJk+e/MADD1x77bVGy7322msnnXTSO++8M3r06FAodODAgalTp+7fv9/UGjn//PMvueSSm266qaCgAEBtbe28efMuueSSrl27RiKRW2655bjjjrvjjjteeumlXr16mSexfv36GTNmbNmypSmZSmYzMEiWCrRNe9uU+yShQMi+0hpM9lArVEw2ibptLRsSMKFBLEAqFjXBRJYvSIYPi5w56tDusD7TyioRUjNe1xWlys+GDAPHk3AAj4lI+yQsLSQzWeJDFQWzINEiZF7TIjk0M9h73K8NCyng26w1ISoFpxyLlHSktLa+u+fUMcAANEiBEPXc/5I5050cn7UNyZKkhMNHWAStdUK4AxG1adOmsLDQZLIUFRUVFhbm5ubm5eUVFhaed955vXv3NvXhfvWrX7355psm3PGjjz668847L7jggt/+9rdFRUU333zz3//+9wEDBjz77LNt27ZVSpWUlNxyyy25ubm33nrr7bffnpube8011/Tp08doP/OL48ePX7ly5f79+9u3b3/PPfcUFxd369bNbKNxxx13FBQUXHzxxbNnz96+ffvUqVMfffTRsrIyy7KWLl36xBNP3Hbbbb169Vq5cuWll176+eefDxgw4Kqrrkq/IpKkxJgZmuFDMfsEloBgVCn1jhu9x6ueET3042jZIU0EaKEamPe0Ju1KU7a+XsBAPlE2sl7xvd0+S8i3vMhD0Zo/R2u2eyoLVhiqkGiSzPaUT7B8QZZmydq1/HLCCt8Dm2rc37qAMYQQ6g3XfQJuETmHLSaoHD+pLOq/JQjwhfT9mt+J7DFOnguVraUP4Yo6oiQvL6+kpKR3797Z2dnxNIZxjWK7Rhi/yET07tq16/jjj7/hhhuYOT8/f9myZVu2bJFSfvTRR4899till16qtX7rrbfmz58/d+7c2traLl26jBo1CkBpaWmfPn0uvPDCDz74oFu3biaquFOnTuYXzea3jz/++OjRo+fPn8/MJ5xwwsknn2winmpqaowDdtNNN40YMeLll1++7LLL7r333pqaGsuyli1btmLFihtuuGHEiBH33HNPQUFBfn6+1trUTWl2XAjXbQkLIlggAQktdyu/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" alt="ParqueP5"></a>
   <div class="nav-links">
-    <a href="quem-somos.html">Quem Somos</a><a href="fotos.html">Fotos</a>
+    <a href="quem-somos.html" style="color:var(--white)">Quem Somos</a><a href="fotos.html">Fotos</a>
     <a href="faq.html" style="color:var(--white)">FAQ</a>
     <a href="localizacao.html">Localiza&#231;&#227;o</a>
   </div>
@@ -140,345 +177,106 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:32px 48px
   <a href="index.html#reservar" style="color:var(--red);font-weight:700">Reservar &rarr;</a>
   <a href="tel:+351215954758">&#128222; 215 954 758</a>
 </div>
-
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-label">Perguntas frequentes</div>
-    <h1>Como podemos<br>ajud&aacute;-lo?</h1>
-    <p class="hero-sub">Encontre respostas r&aacute;pidas sobre reservas, pre&ccedil;os, transfer, estacionamento e muito mais.</p>
+<div class="qs-hero">
+  <div class="qs-hero-inner">
+    <div class="qs-label">Sobre n&oacute;s</div>
+    <h1>O parque para quem<br>j&aacute; sabe o que quer</h1>
+    <p class="qs-hero-sub">Estacionamento privado junto ao Aeroporto de Lisboa, com transfer gratuito 24 horas e equipa no local todos os dias do ano.</p>
   </div>
 </div>
 
-<div class="search-bar">
-  <div class="search-wrap">
-    <span class="search-icon">&#128269;</span>
-    <input class="search-input" type="text" id="faq-search" placeholder="Pesquisar nas perguntas frequentes..." oninput="window.filterFaq(this.value)">
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">24H</div><div class="stat-lbl">Opera&ccedil;&atilde;o cont&iacute;nua</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-lbl">Tipos de parque</div></div>
+    <div class="stat-item"><div class="stat-num">5'</div><div class="stat-lbl">Do terminal</div></div>
+    <div class="stat-item"><div class="stat-num">0&euro;</div><div class="stat-lbl">Transfer inclu&iacute;do</div></div>
   </div>
 </div>
 
-<div class="layout">
+<div class="qs-main">
 
-  <div class="cat-tabs">
-    <button class="cat-tab active" onclick="window.filterCat('todas', this)">Todas</button>
-    <button class="cat-tab" onclick="window.filterCat('reservas', this)">Reservas e Pre&ccedil;os</button>
-    <button class="cat-tab" onclick="window.filterCat('transfer', this)">Chegada e Transfer</button>
-    <button class="cat-tab" onclick="window.filterCat('estacionamento', this)">Estacionamento</button>
-    <button class="cat-tab" onclick="window.filterCat('extras', this)">Extras e Servi&ccedil;os</button>
-    <button class="cat-tab" onclick="window.filterCat('seguranca', this)">Seguran&ccedil;a</button>
+  <div class="qs-section">
+    <div class="qs-section-label">Quem somos</div>
+    <h2>ParqueP5</h2>
+    <p>O ParqueP5 &eacute; um estacionamento privado localizado no Prior Velho, a poucos minutos do terminal do Aeroporto Humberto Delgado de Lisboa. Dedicamo-nos exclusivamente a tornar a experi&ecirc;ncia de estacionar antes de uma viagem mais simples, mais segura e mais acess&iacute;vel.</p>
+    <p>A nossa opera&ccedil;&atilde;o funciona 24 horas por dia, todos os dias do ano. A equipa est&aacute; sempre presente para receber os clientes, coordenar o transfer para o terminal e garantir que a viatura fica em boas m&atilde;os durante a aus&ecirc;ncia.</p>
+    <p>O servi&ccedil;o de transfer entre o parque e o aeroporto &eacute; gratuito e permanente &mdash; sem esperas, sem surpresas.</p>
   </div>
 
-  <div id="no-results" class="no-results">
-    <h3>Sem resultados</h3>
-    <p>N&atilde;o encontr&aacute;mos perguntas com esse termo. Tente uma pesquisa diferente ou <a href="tel:+351215954758" style="color:var(--red)">ligue-nos directamente</a>.</p>
-  </div>
+  <hr class="qs-divider">
 
-  <!-- RESERVAS E PREÇOS -->
-  <div class="faq-section" data-cat="reservas">
-    <div class="faq-section-title">
-      <div class="faq-section-icon">&#128203;</div>
-      <h2>Reservas e Pre&ccedil;os</h2>
-    </div>
-
-    <div class="faq-item" data-q="como fazer reserva parquep5">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Como fa&ccedil;o uma reserva no ParqueP5?</span>
-        <span class="faq-toggle">+</span>
+  <div class="qs-section">
+    <div class="qs-section-label">Miss&atilde;o e valores</div>
+    <h2>Como trabalhamos</h2>
+    <div class="valores-grid">
+      <div class="valor-card">
+        <div class="valor-icon">&#127919;</div>
+        <div class="valor-title">Simplicidade</div>
+        <div class="valor-text">Reserva online em 2 minutos. Chegada descomplicada. Pagamento s&oacute; no regresso. Sem letra pequena.</div>
       </div>
-      <div class="faq-a">
-        <p>A reserva &eacute; feita directamente neste site. Preenche os dados pessoais, as datas e horas de entrada e sa&iacute;da, escolhe o tipo de estacionamento e, se quiser, adiciona servi&ccedil;os extra como lavagem ou carregamento el&eacute;ctrico.</p>
-        <p>Ap&oacute;s submeter o formul&aacute;rio, a nossa equipa confirma a disponibilidade e entra em contacto em menos de 1 hora.</p>
+      <div class="valor-card">
+        <div class="valor-icon">&#128274;</div>
+        <div class="valor-title">Seguran&ccedil;a</div>
+        <div class="valor-text">Videovigilância permanente, veda&ccedil;&atilde;o, ilumina&ccedil;&atilde;o nocturna e controlo de acessos. A viatura est&aacute; em boas m&atilde;os.</div>
       </div>
-    </div>
-
-    <div class="faq-item" data-q="preço dia hora tarifa custo valor">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">O pre&ccedil;o &eacute; calculado por dia ou por hora?</span>
-        <span class="faq-toggle">+</span>
+      <div class="valor-card">
+        <div class="valor-icon">&#9200;</div>
+        <div class="valor-title">Pontualidade</div>
+        <div class="valor-text">Transfer imediato &agrave; chegada. Coordena&ccedil;&atilde;o de pickup no regresso assim que recolhe as bagagens.</div>
       </div>
-      <div class="faq-a">
-        <p>As tarifas s&atilde;o calculadas <strong>por dia de calend&aacute;rio</strong> — cada dia conta, tanto o dia de entrada como o de sa&iacute;da. Por exemplo: entrar a 1 de Maio e sair a 4 de Maio equivale a 4 dias.</p>
-        <p>Os pre&ccedil;os s&atilde;o fixos por n&uacute;mero de dias (at&eacute; 30 dias), com surcharge di&aacute;rio a partir do 31.&ordm; dia. Pode simular o valor exacto no formul&aacute;rio de reserva.</p>
+      <div class="valor-card">
+        <div class="valor-icon">&#128200;</div>
+        <div class="valor-title">Pre&ccedil;o justo</div>
+        <div class="valor-text">Tarifas claras por dia de calend&aacute;rio. Sem custos escondidos. O pre&ccedil;o que v&ecirc; na simula&ccedil;&atilde;o &eacute; o que paga.</div>
       </div>
-    </div>
-
-    <div class="faq-item" data-q="pagamento antecipado regresso momento">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">&Eacute; necess&aacute;rio pagar antecipadamente?</span>
-        <span class="faq-toggle">+</span>
+      <div class="valor-card">
+        <div class="valor-icon">&#127775;</div>
+        <div class="valor-title">Qualidade</div>
+        <div class="valor-text">Servi&ccedil;os extra como lavagem completa e carregamento el&eacute;ctrico para quem quer regressar com a viatura pronta.</div>
       </div>
-      <div class="faq-a">
-        <p><strong>N&atilde;o.</strong> O pagamento &eacute; efectuado no momento da sa&iacute;da, ap&oacute;s o regresso da viagem. N&atilde;o &eacute; cobrado qualquer valor &agrave; chegada nem na reserva.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="alterar cancelar reserva mudança datas">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">&Eacute; poss&iacute;vel alterar ou cancelar a reserva?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p><strong>Sim.</strong> Altera&ccedil;&otilde;es de datas ou hor&aacute;rios s&atilde;o aceites sem qualquer custo, sujeitas a disponibilidade.</p>
-        <p>O cancelamento pode ser feito sem penaliza&ccedil;&atilde;o at&eacute; <strong>24 horas antes</strong> da hora de entrada prevista. Para cancelar ou alterar, basta contactar-nos por telefone ou email.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="confirmação reserva email confirmado">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Como sei que a minha reserva est&aacute; confirmada?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Ap&oacute;s submeter o pedido de reserva, a nossa equipa entra em contacto <strong>em menos de 1 hora</strong> por telefone ou email para confirmar a disponibilidade e finalizar a reserva.</p>
-        <p>Se n&atilde;o receber contacto dentro desse prazo, ligue-nos directamente para <a href="tel:+351215954758">+351 215 954 758</a>.</p>
+      <div class="valor-card">
+        <div class="valor-icon">&#128101;</div>
+        <div class="valor-title">Equipa</div>
+        <div class="valor-text">Profissionais no local 24h, com seguro de responsabilidade civil e forma&ccedil;&atilde;o em condu&ccedil;&atilde;o defensiva.</div>
       </div>
     </div>
   </div>
 
-  <!-- CHEGADA E TRANSFER -->
-  <div class="faq-section" data-cat="transfer">
-    <div class="faq-section-title">
-      <div class="faq-section-icon">&#128651;</div>
-      <h2>Chegada ao Parque e Transfer</h2>
-    </div>
+  <hr class="qs-divider">
 
-    <div class="faq-item" data-q="onde fica localização morada endereço prior velho">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Onde fica o ParqueP5?</span>
-        <span class="faq-toggle">+</span>
+  <div class="qs-section">
+    <div class="qs-section-label">Seguran&ccedil;a</div>
+    <h2>A sua viatura est&aacute; protegida</h2>
+    <div class="seg-grid">
+      <div class="seg-item">
+        <div class="seg-icon">&#128249;</div>
+        <div class="seg-text"><strong>Videovigilância 24h</strong>Circuito fechado de câmeras em todo o per&iacute;metro, com grava&ccedil;&atilde;o cont&iacute;nua.</div>
       </div>
-      <div class="faq-a">
-        <p>O ParqueP5 situa-se em <strong>Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho</strong> — a cerca de 5 minutos do terminal do Aeroporto de Lisboa.</p>
-        <p>
-          <a href="https://maps.app.goo.gl/VYpCJWYWSTDjhnoQ8" target="_blank">&#128205; Google Maps</a>
-          &nbsp;&nbsp;
-          <a href="https://waze.com/ul?ll=38.7833,-9.1189&navigate=yes" target="_blank">&#128663; Waze</a>
-        </p>
+      <div class="seg-item">
+        <div class="seg-icon">&#128682;</div>
+        <div class="seg-text"><strong>Controlo de acessos</strong>Cancelas com acesso controlado. Entrada e sa&iacute;da registadas.</div>
       </div>
-    </div>
-
-    <div class="faq-item" data-q="transfer gratuito aeroporto terminal autocarro como funciona">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Como funciona o transfer para o aeroporto?</span>
-        <span class="faq-toggle">+</span>
+      <div class="seg-item">
+        <div class="seg-icon">&#128737;</div>
+        <div class="seg-text"><strong>Veda&ccedil;&atilde;o e ilumina&ccedil;&atilde;o</strong>Per&iacute;metro vedado e iluminado durante a noite.</div>
       </div>
-      <div class="faq-a">
-        <p>O transfer entre o ParqueP5 e o terminal do aeroporto &eacute; <strong>gratuito e opera 24 horas por dia, 365 dias por ano</strong>.</p>
-        <p>No dia da partida, dirija-se ao parque, fa&ccedil;a o check-in nas nossas instala&ccedil;&otilde;es e ser&aacute; transportado ao terminal de forma coordenada. N&atilde;o &eacute; necess&aacute;rio aguardar &mdash; a transfer&ecirc;ncia &eacute; praticamente imediata.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="quanto tempo antes antecedência chegar parque partida">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Com que antecedência devo chegar ao parque antes do voo?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Recomendamos que chegue ao ParqueP5 com pelo menos <strong>30 minutos de antecedência</strong> relativamente &agrave; hora de abertura do check-in do seu voo, acrescido do tempo de transfer at&eacute; ao terminal (aproximadamente 5&ndash;10 minutos).</p>
-        <p>Como refer&ecirc;ncia geral das companhias a&eacute;reas:</p>
-        <ul>
-          <li>Voos internacionais: 2 horas antes do embarque</li>
-          <li>Voos dom&eacute;sticos: 1 hora antes do embarque</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="regresso chegada pickup recolha aterrar voo">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Como funciona o regresso &mdash; quando aterro, o que fa&ccedil;o?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Quando aterrar, ligue-nos para <a href="tel:+351215954758"><strong>+351 215 954 758</strong></a>. A nossa equipa coordena o pickup no terminal e a viatura estar&aacute; pronta quando chegar ao parque.</p>
-        <p>O pagamento &eacute; efectuado neste momento, &agrave; sa&iacute;da.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="atraso voo perder voo transfer responsabilidade">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">O ParqueP5 garante que n&atilde;o perco o voo?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>O transfer opera de forma cont&iacute;nua e &eacute; optimizado para ser r&aacute;pido. No entanto, n&atilde;o nos &eacute; poss&iacute;vel garantir o cumprimento de hor&aacute;rios de voo em caso de condi&ccedil;&otilde;es excepcionais de tr&aacute;fego ou intempéries fora do nosso controlo.</p>
-        <p>Para uma margem confort&aacute;vel, recomendamos sempre chegar ao parque com <strong>pelo menos 30 minutos a mais</strong> do que o tempo m&iacute;nimo recomendado pela companhia a&eacute;rea.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ESTACIONAMENTO -->
-  <div class="faq-section" data-cat="estacionamento">
-    <div class="faq-section-title">
-      <div class="faq-section-icon">&#127359;</div>
-      <h2>Tipos de Estacionamento</h2>
-    </div>
-
-    <div class="faq-item" data-q="tipos estacionamento coberto toldo descoberto diferença">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Quais s&atilde;o os tipos de estacionamento dispon&iacute;veis?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>O ParqueP5 oferece tr&ecirc;s modalidades:</p>
-        <ul>
-          <li><strong>Coberto</strong> &mdash; &aacute;rea totalmente coberta, m&aacute;xima prote&ccedil;&atilde;o contra sol, chuva e intempéries.</li>
-          <li><strong>Toldo</strong> &mdash; coberto com toldo, prote&ccedil;&atilde;o intermédia a um pre&ccedil;o mais acess&iacute;vel.</li>
-          <li><strong>Descoberto</strong> &mdash; estacionamento ao ar livre, op&ccedil;&atilde;o mais econ&oacute;mica.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="coberto toldo diferença proteção">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Qual a diferen&ccedil;a entre coberto e toldo?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>O <strong>coberto</strong> corresponde a uma &aacute;rea fechada a 100%, com tecto s&oacute;lido &mdash; a melhor op&ccedil;&atilde;o para quem pretende m&aacute;xima prote&ccedil;&atilde;o da viatura.</p>
-        <p>O <strong>toldo</strong> oferece cobertura parcial atrav&eacute;s de uma estrutura com toldo, protegendo do sol directo e de chuva ligeira, a um pre&ccedil;o intermédia entre o coberto e o descoberto.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="viatura grande suv carrinha dimensões">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Viaturas grandes (SUV, carrinha) t&ecirc;m condi&ccedil;&otilde;es diferentes?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Podem aplicar-se condi&ccedil;&otilde;es espec&iacute;ficas para viaturas acima de determinado comprimento ou altura. Se tiver d&uacute;vidas sobre a sua viatura, contacte-nos antes de reservar para confirmar disponibilidade e eventuais diferen&ccedil;as de tarifa.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="leve a chave chave cliente viagem guardar">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Posso ficar com a chave da minha viatura durante a viagem?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Sim, atrav&eacute;s do servi&ccedil;o <strong>Leve a Chave</strong> (&#8364;15). Ao entregar a viatura nas nossas instala&ccedil;&otilde;es, a chave fica consigo durante toda a viagem &mdash; a viatura n&atilde;o &eacute; movida enquanto estiver ausente.</p>
-        <p>Esta op&ccedil;&atilde;o est&aacute; dispon&iacute;vel para as modalidades em que a entrega &eacute; feita no parque.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXTRAS E SERVIÇOS -->
-  <div class="faq-section" data-cat="extras">
-    <div class="faq-section-title">
-      <div class="faq-section-icon">&#10010;</div>
-      <h2>Extras e Servi&ccedil;os Adicionais</h2>
-    </div>
-
-    <div class="faq-item" data-q="lavagem carro serviço extra disponível">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Posso pedir a lavagem do carro durante a estadia?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Sim. O servi&ccedil;o de <strong>Lavagem Completa</strong> (exterior + interior, &#8364;30) pode ser adicionado no momento da reserva. &Eacute; s&oacute; seleccion&aacute;-lo como extra e a viatura estará limpa quando regressar.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="carregamento elétrico EV carro eléctrico bateria">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Tenho um ve&iacute;culo el&eacute;ctrico &mdash; posso carregar durante a estadia?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Sim. O servi&ccedil;o de <strong>Carregamento El&eacute;ctrico</strong> (&#8364;25) est&aacute; dispon&iacute;vel como extra, sujeito a disponibilidade de ponto de carregamento. Regresse com autonomia e sem desvios de rota.</p>
-        <p>Se tiver d&uacute;vidas sobre compatibilidade com o seu ve&iacute;culo, contacte-nos antes de reservar.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="extras preços custos adicionais serviços">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Quais os extras dispon&iacute;veis e quanto custam?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Os servi&ccedil;os extra dispon&iacute;veis s&atilde;o:</p>
-        <ul>
-          <li><strong>Lavagem Completa</strong> (ext. + interior) &mdash; &#8364;30</li>
-          <li><strong>Carregamento El&eacute;ctrico</strong> &mdash; &#8364;25 (sujeito a disponibilidade)</li>
-          <li><strong>Leve a Chave</strong> &mdash; &#8364;15</li>
-        </ul>
-        <p>Todos os extras s&atilde;o seleccionados durante o processo de reserva e adicionados &agrave; estimativa de pre&ccedil;o.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SEGURANÇA -->
-  <div class="faq-section" data-cat="seguranca">
-    <div class="faq-section-title">
-      <div class="faq-section-icon">&#128274;</div>
-      <h2>Seguran&ccedil;a e Responsabilidade</h2>
-    </div>
-
-    <div class="faq-item" data-q="segurança videovigilância cctv câmeras proteção viatura">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">O ParqueP5 &eacute; um estacionamento seguro?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Sim. O ParqueP5 disp&otilde;e de:</p>
-        <ul>
-          <li>Videovigilância (CCTV) permanente em todo o per&iacute;metro</li>
-          <li>Veda&ccedil;&atilde;o e ilumina&ccedil;&atilde;o nocturna</li>
-          <li>Controlo de acessos</li>
-          <li>Equipa presente 24h por dia, todos os dias do ano</li>
-        </ul>
-        <p>As condi&ccedil;&otilde;es de responsabilidade e seguro est&atilde;o detalhadas nos <a href="termos.html">Termos e Condi&ccedil;&otilde;es</a>.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="dano avaria arranhão responsabilidade sinistro reclamação">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">O que acontece se a minha viatura sofrer um dano enquanto estiver no parque?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Qualquer dano, anomalia ou incidente deve ser comunicado ao respons&aacute;vel de turno <strong>imediatamente</strong> aquando da recolha da viatura, antes de sair das instala&ccedil;&otilde;es.</p>
-        <p>A reclama&ccedil;&atilde;o formal deve ser enviada para <a href="/cdn-cgi/l/email-protection#4322332c2a2c222c202f2a262d37260333223132362633766d3337"><span class="__cf_email__" data-cfemail="81e0f1eee8eee0eee2ede8e4eff5e4c1f1e0f3f0f4e4f1b4aff1f5">[email&#160;protected]</span></a> com descri&ccedil;&atilde;o detalhada e registo fotogr&aacute;fico. Respondemos no prazo de 10 dias &uacute;teis.</p>
-        <p>Consulte os <a href="termos.html">Termos e Condi&ccedil;&otilde;es</a> para o detalhe das exclus&otilde;es de responsabilidade (condi&ccedil;&otilde;es atmosf&eacute;ricas, objectos no interior, etc.).</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="pagamento não pagar fatura dívida retenção viatura">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">O que acontece se n&atilde;o efectuar o pagamento &agrave; sa&iacute;da?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Em caso de n&atilde;o pagamento, o ParqueP5 reserva-se o direito de reten&ccedil;&atilde;o sobre o ve&iacute;culo, nos termos do artigo 755.&ordm; do C&oacute;digo Civil, at&eacute; integral liquida&ccedil;&atilde;o do montante em d&iacute;vida, incluindo os dias adicionais entretanto decorridos.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-q="reclamação livro reclamações queixa insatisfação">
-      <div class="faq-q" onclick="window.toggle(this)">
-        <span class="faq-q-text">Como posso apresentar uma reclama&ccedil;&atilde;o?</span>
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">
-        <p>O ParqueP5 disponibiliza livro de reclama&ccedil;&otilde;es nas suas instala&ccedil;&otilde;es. Pode tamb&eacute;m reclamar:</p>
-        <ul>
-          <li>Por email: <a href="/cdn-cgi/l/email-protection#badbcad5d3d5dbd5d9d6d3dfd4cedffacadbc8cbcfdfca8f94cace"><span class="__cf_email__" data-cfemail="97f6e7f8fef8f6f8f4fbfef2f9e3f2d7e7f6e5e6e2f2e7a2b9e7e3">[email&#160;protected]</span></a></li>
-          <li>Atrav&eacute;s do <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclama&ccedil;&otilde;es online</a></li>
-          <li>Via <a href="https://ec.europa.eu/consumers/odr" target="_blank">Plataforma Europeia de Resolu&ccedil;&atilde;o de Lit&iacute;gios</a></li>
-        </ul>
+      <div class="seg-item">
+        <div class="seg-icon">&#128203;</div>
+        <div class="seg-text"><strong>Seguro de responsabilidade civil</strong>Os parques est&atilde;o cobertos por seguro, nas condi&ccedil;&otilde;es descritas nos <a href="termos.html" style="color:var(--red)">Termos e Condi&ccedil;&otilde;es</a>.</div>
       </div>
     </div>
   </div>
 
 </div>
-
-<!-- CTA -->
 <section class="cta-strip">
-  <h2>N&atilde;o encontrou resposta?</h2>
-  <p>A nossa equipa est&aacute; dispon&iacute;vel 24 horas por dia para o ajudar.</p>
+  <h2>Pronto para reservar?</h2>
+  <p>Estacionamento seguro junto ao Aeroporto de Lisboa &mdash; Transfer gr&aacute;tis inclu&iacute;do</p>
   <div class="cta-buttons">
     <a href="index.html" class="btn-white">Fazer Reserva</a>
     <a href="tel:+351215954758" class="btn-outline-white">&#128222; +351 215 954 758</a>
   </div>
 </section>
-
 <footer>
   <div class="footer-info">
     <strong>PARQUE P5</strong><br>
@@ -491,7 +289,11 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:32px 48px
     <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclama&ccedil;&otilde;es</a>
   </div>
 </footer>
-
-<script src="parquep5-faq.js"></script>
+<script>
+window.toggleMenu = function() {
+  var m = document.getElementById('nav-mobile');
+  m.classList.toggle('open');
+};
+</script>
 </body>
 </html>
