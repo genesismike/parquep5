@@ -118,14 +118,17 @@ function validate(step) {
   }
   if (step === 2) {
     var ent = document.getElementById('entrada').value;
+    var horaEnt = document.getElementById('hora-entrada').value;
     var sai = document.getElementById('saida').value;
     var tip = document.getElementById('tipo').value;
     if (!ent) { showErr(2, 'Por favor indique a data de entrada.'); return false; }
-    if (!sai) { showErr(2, 'Por favor indique a data de sa\u00edda.'); return false; }
+    if (!sai) { showErr(2, 'Por favor indique a data de sa\\u00edda.'); return false; }
     if (!tip) { showErr(2, 'Por favor selecione o tipo de estacionamento.'); return false; }
-    if (calcularDias(ent, sai) <= 0) { showErr(2, 'A data de sa\u00edda deve ser posterior \u00e0 de entrada.'); return false; }
-  }
-  return true;
+    if (calcularDias(ent, sai) <= 0) { showErr(2, 'A data de sa\\u00edda deve ser posterior \\u00e0 de entrada.'); return false; }
+    var agora = new Date();
+    var dtEntrada = horaEnt ? new Date(ent + 'T' + horaEnt + ':00') : new Date(ent + 'T00:00:00');
+    if (dtEntrada < agora) { showErr(2, 'A data e hora de entrada n\\u00e3o pode ser no passado.'); return false; }
+  }  return true;
 }
 
 function goToStep(step) {
