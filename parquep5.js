@@ -3,7 +3,7 @@
 // Ficheiro externo para evitar corrupção pelo Cloudflare
 // ============================================================
 
-var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxlCmGf7TpSC-MWvICkYZgcNDRXI8uhKS9HV0IetLkSgoHvCm_Ps6f3ukz4thk9vXd9/exec";
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMYtGc-xa_NpQC-PazynIxMfN1R9qzT0eX4lsoxpL_iHDspquJQJ16hbSAdtRIofKO/exec";
 
 var TARIFAS = {
   "Descoberto": { tabela:[0,14,20,26,32,38,44,50,56,62,68,74,80,86,92,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188], surcharge:6 },
