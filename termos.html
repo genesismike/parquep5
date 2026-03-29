@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos e Condições — ParqueP5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;800&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E10600;--red-dark:#b80500;--black:#000;--white:#fff;--off-white:#f5f5f5;--gray:#888;--text:#1a1a1a;--border:#e8e8e8}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--off-white);color:var(--text);line-height:1.7}
+nav{background:var(--black);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:70px;border-bottom:3px solid var(--red);position:sticky;top:0;z-index:100}
+.logo{display:flex;flex-direction:column;text-decoration:none}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--white);letter-spacing:1px;text-transform:uppercase;line-height:1}
+.logo-text span{color:var(--red)}
+.logo-line{width:100%;height:3px;background:var(--red);margin-top:3px}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-phone{color:var(--white);text-decoration:none;font-size:15px;font-weight:700;transition:color .2s}
+.nav-phone:hover{color:var(--red)}
+.nav-back{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s;display:flex;align-items:center;gap:6px}
+.nav-back:hover{color:var(--white)}
+
+.hero{background:var(--black);padding:52px 48px;border-bottom:3px solid var(--red)}
+.hero-inner{max-width:860px;margin:0 auto}
+.hero-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:12px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:900;color:var(--white);text-transform:uppercase;line-height:1;margin-bottom:12px}
+.hero-meta{font-size:13px;color:rgba(255,255,255,.4)}
+
+.layout{max-width:1060px;margin:0 auto;padding:48px 48px 80px;display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:90px}
+.toc-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.toc-list a{display:block;padding:7px 12px;font-size:13px;font-weight:600;color:var(--gray);text-decoration:none;border-radius:4px;transition:all .2s;border-left:2px solid transparent}
+.toc-list a:hover{color:var(--text);background:var(--white);border-left-color:var(--red)}
+.toc-list a.active{color:var(--red);background:var(--white);border-left-color:var(--red)}
+
+/* CONTENT */
+.content{background:var(--white);border-radius:8px;padding:48px;border:1px solid var(--border)}
+.tc-section{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+.tc-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.tc-section-num{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.tc-section h2{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--black);text-transform:uppercase;margin-bottom:20px;line-height:1.1}
+.tc-section h3{font-size:15px;font-weight:700;color:var(--black);margin:20px 0 10px;padding-left:12px;border-left:3px solid var(--red)}
+.tc-section p{font-size:15px;color:#444;margin-bottom:14px;line-height:1.75}
+.tc-section p:last-child{margin-bottom:0}
+.tc-section ul{margin:10px 0 14px 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.tc-section ul li{font-size:15px;color:#444;display:flex;gap:10px;align-items:flex-start}
+.tc-section ul li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px}
+.info-box{background:#fff8f8;border:1px solid rgba(225,6,0,.15);border-left:3px solid var(--red);border-radius:4px;padding:16px 20px;margin:16px 0}
+.info-box p{font-size:14px;color:#555;margin:0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.contact-item{background:var(--off-white);border-radius:6px;padding:14px 16px}
+.contact-key{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.contact-val{font-size:14px;font-weight:600;color:var(--black)}
+.contact-val a{color:var(--red);text-decoration:none}
+.contact-val a:hover{text-decoration:underline}
+
+footer{background:var(--black);border-top:3px solid var(--red);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-info{color:rgba(255,255,255,.4);font-size:13px;line-height:1.8}
+.footer-info strong{color:rgba(255,255,255,.7)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:12px;transition:color .2s}
+.footer-links a:hover{color:var(--red)}
+
+@media(max-width:860px){
+  nav,.hero,footer{padding-left:24px;padding-right:24px}
+  .layout{grid-template-columns:1fr;padding:24px}
+  .sidebar{position:static}
+  .toc-list{display:none}
+  .content{padding:28px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-text">PARQUE <span>P5</span></span><div class="logo-line"></div></div>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html">&#8592; Voltar ao site</a>
+    <a class="nav-phone" href="tel:+351215954758">&#128222; +351 215 954 758</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Documentos legais</div>
+    <h1>Termos e Condi&ccedil;&otilde;es Gerais</h1>
+    <div class="hero-meta">ParqueP5 &mdash; Estacionamento Privado | Aeroporto de Lisboa &nbsp;&middot;&nbsp; &Uacute;ltima actualiza&ccedil;&atilde;o: 29 de mar&ccedil;o de 2026</div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc-label">Conte&uacute;do</div>
+    <ul class="toc-list">
+      <li><a href="#s1">1. Identifica&ccedil;&atilde;o</a></li>
+      <li><a href="#s2">2. &Acirc;mbito e Aceita&ccedil;&atilde;o</a></li>
+      <li><a href="#s3">3. Servi&ccedil;os</a></li>
+      <li><a href="#s4">4. Reservas</a></li>
+      <li><a href="#s5">5. Pagamento</a></li>
+      <li><a href="#s6">6. Responsabilidade</a></li>
+      <li><a href="#s7">7. Obriga&ccedil;&otilde;es do Cliente</a></li>
+      <li><a href="#s8">8. Prote&ccedil;&atilde;o de Dados</a></li>
+      <li><a href="#s9">9. Lei e Lit&iacute;gios</a></li>
+      <li><a href="#s10">10. Altera&ccedil;&otilde;es</a></li>
+      <li><a href="#s11">Contactos</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <div class="tc-section" id="s1">
+      <div class="tc-section-num">Artigo 1</div>
+      <h2>Identifica&ccedil;&atilde;o do Prestador de Servi&ccedil;o</h2>
+      <p>O presente documento regula os termos e condi&ccedil;&otilde;es de utiliza&ccedil;&atilde;o dos servi&ccedil;os prestados sob a marca ParqueP5, parque de estacionamento privado situado na zona do Prior Velho, junto ao Aeroporto Humberto Delgado, em Lisboa.</p>
+      <div class="contact-grid">
+        <div class="contact-item"><div class="contact-key">Raz&atilde;o social</div><div class="contact-val">Opportunity Revival, Lda.</div></div>
+        <div class="contact-item"><div class="contact-key">NIF</div><div class="contact-val">515 967 300</div></div>
+        <div class="contact-item"><div class="contact-key">Sede</div><div class="contact-val">Quinta das Pretas, 2685-375 Prior Velho</div></div>
+        <div class="contact-item"><div class="contact-key">Instala&ccedil;&otilde;es</div><div class="contact-val">Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho</div></div>
+        <div class="contact-item"><div class="contact-key">Telefone</div><div class="contact-val"><a href="tel:+351215954758">+351 215 954 758</a></div></div>
+        <div class="contact-item"><div class="contact-key">Email</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection#0f6e7f6066606e606c63666a617b6a4f7f6e7d7e7a6a7f3a217f7b"><span class="__cf_email__" data-cfemail="5f3e2f3036303e303c33363a312b3a1f2f3e2d2e2a3a2f6a712f2b">[email&#160;protected]</span></a></div></div>
+      </div>
+    </div>
+
+    <div class="tc-section" id="s2">
+      <div class="tc-section-num">Artigo 2</div>
+      <h2>&Acirc;mbito e Aceita&ccedil;&atilde;o</h2>
+      <p>Estes Termos e Condi&ccedil;&otilde;es aplicam-se a todos os clientes que utilizem os servi&ccedil;os do ParqueP5, seja atrav&eacute;s do website, por telefone, presencialmente ou atrav&eacute;s de plataformas parceiras.</p>
+      <p>A utiliza&ccedil;&atilde;o dos servi&ccedil;os do ParqueP5 implica a aceita&ccedil;&atilde;o integral e incondicional destes Termos e Condi&ccedil;&otilde;es. Caso n&atilde;o concorde com alguma das disposi&ccedil;&otilde;es aqui previstas, dever&aacute; abster-se de utilizar os nossos servi&ccedil;os.</p>
+    </div>
+
+    <div class="tc-section" id="s3">
+      <div class="tc-section-num">Artigo 3</div>
+      <h2>Servi&ccedil;os Dispon&iacute;veis</h2>
+      <p>O ParqueP5 disponibiliza os seguintes servi&ccedil;os, sujeitos a disponibilidade:</p>
+      <ul>
+        <li>Estacionamento coberto, sob toldo e descoberto</li>
+        <li>Servi&ccedil;o de transfer 24 horas, gratuito, entre o parque e o aeroporto</li>
+        <li>Lavagem de ve&iacute;culos</li>
+        <li>Carregamento de ve&iacute;culos el&eacute;tricos</li>
+      </ul>
+      <p>A disponibilidade de cada modalidade de estacionamento e servi&ccedil;os complementares pode variar. O ParqueP5 reserva-se o direito de adaptar a oferta de servi&ccedil;os mediante as condi&ccedil;&otilde;es operacionais, sem que tal constitua motivo de incumprimento contratual.</p>
+    </div>
+
+    <div class="tc-section" id="s4">
+      <div class="tc-section-num">Artigo 4</div>
+      <h2>Reservas</h2>
+      <h3>4.1 Natureza da Reserva</h3>
+      <p>A reserva efetuada pelo cliente constitui uma estimativa de chegada e n&atilde;o uma aloca&ccedil;&atilde;o garantida de lugar espec&iacute;fico. O ParqueP5 compromete-se a garantir a disponibilidade de estacionamento para o per&iacute;odo reservado, nas modalidades indicadas, desde que a chegada ocorra num prazo razo&aacute;vel face ao hor&aacute;rio indicado.</p>
+      <h3>4.2 Informa&ccedil;&otilde;es Obrigat&oacute;rias</h3>
+      <p>Para a realiza&ccedil;&atilde;o de uma reserva, o cliente dever&aacute; fornecer, no m&iacute;nimo, os seguintes dados:</p>
+      <ul>
+        <li>Data e hora prevista de entrada</li>
+        <li>Data e hora prevista de sa&iacute;da</li>
+        <li>Matr&iacute;cula do ve&iacute;culo</li>
+        <li>Dados de contacto (nome e n&uacute;mero de telefone)</li>
+      </ul>
+      <h3>4.3 Confirma&ccedil;&atilde;o</h3>
+      <p>A reserva &eacute; considerada confirmada ap&oacute;s rece&ccedil;&atilde;o de confirma&ccedil;&atilde;o por parte do ParqueP5, via email, SMS ou outro meio acordado. &Eacute; da responsabilidade do cliente verificar a exatid&atilde;o dos dados confirmados e reportar qualquer discrepância com a brevidade poss&iacute;vel.</p>
+      <h3>4.4 Altera&ccedil;&atilde;o de Reservas</h3>
+      <p>Altera&ccedil;&otilde;es &agrave;s datas ou hor&aacute;rios de reserva s&atilde;o aceites sem qualquer custo, mediante contacto pr&eacute;vio com o ParqueP5 e sujeitas a disponibilidade &agrave; data do pedido.</p>
+      <h3>4.5 Cancelamento</h3>
+      <p>O cancelamento de uma reserva pode ser efectuado sem penaliza&ccedil;&atilde;o, desde que comunicado com pelo menos 24 horas de antecedência relativamente &agrave; hora de entrada prevista. O ParqueP5 agradece a comunica&ccedil;&atilde;o atempada por forma a optimizar a gest&atilde;o de disponibilidade.</p>
+    </div>
+
+    <div class="tc-section" id="s5">
+      <div class="tc-section-num">Artigo 5</div>
+      <h2>Condi&ccedil;&otilde;es de Pagamento</h2>
+      <p>O pagamento dos servi&ccedil;os de estacionamento &eacute; efetuado no momento da sa&iacute;da do ve&iacute;culo, ap&oacute;s o regresso da viagem. O valor a pagar &eacute; calculado com base no n&uacute;mero de dias efetivos de estacionamento, contados desde a entrada at&eacute; &agrave; sa&iacute;da do ve&iacute;culo.</p>
+      <h3>5.1 Excedente de Per&iacute;odo</h3>
+      <p>Cada per&iacute;odo de estacionamento corresponde a 24 horas. O &uacute;ltimo dia beneficia de uma toler&acirc;ncia de 2 horas para acomodar eventuais atrasos de voo ou de transporte. Caso o ve&iacute;culo permane&ccedil;a no parque por um per&iacute;odo superior ao inicialmente reservado, o excedente ser&aacute; cobrado &agrave; tarifa vigente por dia, sem necessidade de confirma&ccedil;&atilde;o adicional.</p>
+      <h3>5.2 Meios de Pagamento</h3>
+      <p>O ParqueP5 aceita os meios de pagamento dispon&iacute;veis no local, que poder&atilde;o incluir numer&aacute;rio, cart&atilde;o de d&eacute;bito e cart&atilde;o de cr&eacute;dito. Informa&ccedil;&otilde;es actualizadas sobre meios de pagamento aceites est&atilde;o dispon&iacute;veis em www.parquep5.pt ou mediante contacto directo.</p>
+      <h3>5.3 Factura&ccedil;&atilde;o</h3>
+      <p>O cliente pode solicitar fatura com dados fiscais no momento do pagamento. O ParqueP5 n&atilde;o emite faturas retroativas ap&oacute;s a sa&iacute;da do ve&iacute;culo, salvo nos casos expressamente previstos na legisla&ccedil;&atilde;o aplic&aacute;vel.</p>
+    </div>
+
+    <div class="tc-section" id="s6">
+      <div class="tc-section-num">Artigo 6</div>
+      <h2>Responsabilidade por Danos e Furto</h2>
+      <h3>6.1 &Acirc;mbito da Responsabilidade</h3>
+      <p>O ParqueP5 adota todas as medidas razo&aacute;veis de seguran&ccedil;a para prote&ccedil;&atilde;o dos ve&iacute;culos estacionados nas suas instala&ccedil;&otilde;es. Contudo, a responsabilidade do ParqueP5 limita-se aos danos diretamente causados por a&ccedil;&atilde;o ou neglig&ecirc;ncia comprovada dos seus funcion&aacute;rios ou nas suas instala&ccedil;&otilde;es.</p>
+      <h3>6.2 Exclus&otilde;es de Responsabilidade</h3>
+      <p>O ParqueP5 n&atilde;o assume responsabilidade por:</p>
+      <ul>
+        <li>Danos causados por condi&ccedil;&otilde;es atmosf&eacute;ricas adversas (granizo, vento, chuva, entre outros)</li>
+        <li>Furto ou dano de objetos deixados no interior do ve&iacute;culo</li>
+        <li>Quaisquer danos el&eacute;tricos, mec&acirc;nicos ou de desgaste fruto de uso cont&iacute;nuo da viatura</li>
+        <li>Quebra de vidros de para-brisas ou outros vidros danificados</li>
+        <li>Pneus danificados ou perfurados</li>
+        <li>Danos causados por terceiros n&atilde;o identificados, sem nexo de causalidade com a atua&ccedil;&atilde;o do ParqueP5</li>
+        <li>Danos em ve&iacute;culos com anomalias estruturais ou mec&acirc;nicas pr&eacute;-existentes n&atilde;o declaradas no momento da entrega</li>
+      </ul>
+      <h3>6.3 Comunica&ccedil;&atilde;o de Ocorr&ecirc;ncias</h3>
+      <p>Qualquer dano, anomalia ou incidente dever&aacute; ser comunicado ao respons&aacute;vel de turno imediatamente aquando da recolha do ve&iacute;culo, antes da sa&iacute;da das instala&ccedil;&otilde;es. O ParqueP5 n&atilde;o pode ser responsabilizado por ocorr&ecirc;ncias reportadas ap&oacute;s a sa&iacute;da do cliente.</p>
+      <p>A reclama&ccedil;&atilde;o dever&aacute; ser formalizada por escrito, com envio de mensagem de correio electr&oacute;nico para <a href="/cdn-cgi/l/email-protection#c8a9b8a7a1a7a9a7aba4a1ada6bcad88b8a9bab9bdadb8fde6b8bc" style="color:var(--red)"><span class="__cf_email__" data-cfemail="afcedfc0c6c0cec0ccc3c6cac1dbcaefdfcedddedacadf9a81dfdb">[email&#160;protected]</span></a>, descrevendo detalhadamente a ocorr&ecirc;ncia e acompanhada de registo fotogr&aacute;fico. O ParqueP5 compromete-se a responder no prazo de 10 dias &uacute;teis.</p>
+      <h3>6.4 Indisponibilidade de Lugar</h3>
+      <p>Em situa&ccedil;&atilde;o excepcional e involunt&aacute;ria de indisponibilidade de lugar para um cliente com reserva confirmada, o ParqueP5 compromete-se a diligenciar uma solu&ccedil;&atilde;o alternativa de estacionamento nas proximidades. O ParqueP5 assume a diferen&ccedil;a de custo, se aplic&aacute;vel, n&atilde;o havendo lugar a qualquer outra indemniza&ccedil;&atilde;o.</p>
+      <div class="info-box"><p><strong>Nota:</strong> Esta situa&ccedil;&atilde;o &eacute; considerada de car&aacute;cter excepcional e o ParqueP5 toma todas as medidas operacionais para que n&atilde;o ocorra.</p></div>
+      <h3>6.5 Transfer e Responsabilidade por Perda de Voo</h3>
+      <p>O servi&ccedil;o de transfer entre o parque e o aeroporto &eacute; gratuito e opera 24 horas por dia. Contudo, o ParqueP5 n&atilde;o se responsabiliza pela perda de voo do cliente em caso de atraso no servi&ccedil;o de transfer motivado por condi&ccedil;&otilde;es de tr&aacute;fego, condi&ccedil;&otilde;es clim&aacute;tericas adversas, congestionamento nos acessos ao terminal ou outras circunst&acirc;ncias alheias ao controlo do ParqueP5.</p>
+      <div class="info-box"><p>Recomenda-se que o cliente chegue &agrave;s instala&ccedil;&otilde;es do ParqueP5 com um m&iacute;nimo de <strong>30 minutos de antecedência</strong> relativamente &agrave; hora de abertura do check-in do seu voo, acrescido do tempo de transfer. As companhias a&eacute;reas recomendam, em geral, 2 horas de antecedência para voos internacionais e 1 hora para voos dom&eacute;sticos.</p></div>
+    </div>
+
+    <div class="tc-section" id="s7">
+      <div class="tc-section-num">Artigo 7</div>
+      <h2>Obriga&ccedil;&otilde;es do Cliente</h2>
+      <p>O cliente compromete-se a:</p>
+      <ul>
+        <li>Fornecer informa&ccedil;&atilde;o verdadeira e actualizada no momento da reserva</li>
+        <li>Apresentar-se nas instala&ccedil;&otilde;es com o ve&iacute;culo em condi&ccedil;&otilde;es de circula&ccedil;&atilde;o e sem cargas perigosas ou il&iacute;citas</li>
+        <li>Respeitar as normas de circula&ccedil;&atilde;o e sinaliza&ccedil;&atilde;o interna do parque</li>
+        <li>Comunicar atempadamente qualquer altera&ccedil;&atilde;o significativa &agrave; reserva efectuada</li>
+        <li>Liquidar o valor dos servi&ccedil;os prestados no momento da sa&iacute;da</li>
+        <li>Assegurar que o ve&iacute;culo entregue disp&otilde;e de documenta&ccedil;&atilde;o v&aacute;lida e actualizada, designadamente seguro obrigat&oacute;rio e inspec&ccedil;&atilde;o peri&oacute;dica</li>
+      </ul>
+      <p>Quaisquer multas, coimas ou responsabilidades que o ParqueP5 tenha de suportar em virtude de irregularidades verificadas no ve&iacute;culo, na sua documenta&ccedil;&atilde;o ou na sua titularidade ser&atilde;o da exclusiva responsabilidade do cliente.</p>
+      <h3>7.1 Direito de Reten&ccedil;&atilde;o</h3>
+      <p>Em caso de n&atilde;o pagamento pelo cliente do valor dos servi&ccedil;os prestados, o ParqueP5 reserva-se o direito de reten&ccedil;&atilde;o sobre o ve&iacute;culo, nos termos do artigo 755.&ordm;, n.&ordm; 1, al&iacute;nea e) do C&oacute;digo Civil. O ve&iacute;culo apenas ser&aacute; libertado ap&oacute;s integral liquida&ccedil;&atilde;o do montante em d&iacute;vida, incluindo os dias de estacionamento adicionais entretanto decorridos e os respectivos juros de mora legalmente aplic&aacute;veis.</p>
+      <h3>7.2 Livro de Reclama&ccedil;&otilde;es</h3>
+      <p>O ParqueP5 disponibiliza livro de reclama&ccedil;&otilde;es nas suas instala&ccedil;&otilde;es, nos termos da legisla&ccedil;&atilde;o em vigor. As reclama&ccedil;&otilde;es podem igualmente ser submetidas atrav&eacute;s da <a href="https://ec.europa.eu/consumers/odr" target="_blank" style="color:var(--red)">Plataforma Europeia de Resolu&ccedil;&atilde;o de Lit&iacute;gios em linha</a>.</p>
+    </div>
+
+    <div class="tc-section" id="s8">
+      <div class="tc-section-num">Artigo 8</div>
+      <h2>Prote&ccedil;&atilde;o de Dados Pessoais (RGPD)</h2>
+      <h3>8.1 Respons&aacute;vel pelo Tratamento</h3>
+      <p>O ParqueP5 &eacute; o respons&aacute;vel pelo tratamento dos dados pessoais recolhidos no &acirc;mbito da presta&ccedil;&atilde;o dos seus servi&ccedil;os, nos termos do Regulamento (UE) 2016/679 (RGPD) e demais legisla&ccedil;&atilde;o aplic&aacute;vel.</p>
+      <h3>8.2 Dados Recolhidos e Finalidade</h3>
+      <p>Os dados pessoais recolhidos (nome, contacto telef&oacute;nico, endere&ccedil;o de email, matr&iacute;cula do ve&iacute;culo) destinam-se exclusivamente a:</p>
+      <ul>
+        <li>Gest&atilde;o e confirma&ccedil;&atilde;o de reservas</li>
+        <li>Presta&ccedil;&atilde;o e factura&ccedil;&atilde;o dos servi&ccedil;os contratados</li>
+        <li>Comunica&ccedil;&atilde;o operacional com o cliente (confirma&ccedil;&otilde;es, alertas, altera&ccedil;&otilde;es)</li>
+        <li>Cumprimento de obriga&ccedil;&otilde;es legais e fiscais</li>
+      </ul>
+      <h3>8.3 Base Legal</h3>
+      <p>O tratamento de dados &eacute; realizado com base na execu&ccedil;&atilde;o do contrato de servi&ccedil;os celebrado com o cliente e no cumprimento de obriga&ccedil;&otilde;es legais. O envio de comunica&ccedil;&otilde;es de marketing, quando aplic&aacute;vel, &eacute; efectuado apenas com o consentimento expresso do cliente.</p>
+      <h3>8.4 Conserva&ccedil;&atilde;o dos Dados</h3>
+      <p>Os dados pessoais s&atilde;o conservados pelo per&iacute;odo estritamente necess&aacute;rio &agrave; presta&ccedil;&atilde;o dos servi&ccedil;os e ao cumprimento das obriga&ccedil;&otilde;es legais aplic&aacute;veis, nomeadamente as de natureza fiscal e contabil&iacute;stica.</p>
+      <h3>8.5 Direitos do Titular dos Dados</h3>
+      <p>O cliente tem o direito de, a qualquer momento, aceder, rectificar, apagar, limitar ou opor-se ao tratamento dos seus dados pessoais, bem como o direito &agrave; portabilidade dos dados, mediante contacto atrav&eacute;s de <a href="/cdn-cgi/l/email-protection#abcadbc4c2c4cac4c8c7c2cec5dfceebdbcad9dadecedb9e85dbdf" style="color:var(--red)"><span class="__cf_email__" data-cfemail="2e4f5e4147414f414d42474b405a4b6e5e4f5c5f5b4b5e1b005e5a">[email&#160;protected]</span></a>.</p>
+      <h3>8.6 Videovigilância</h3>
+      <p>As instala&ccedil;&otilde;es do ParqueP5 est&atilde;o equipadas com sistema de videovigilância, devidamente autorizado e sinalizado, com finalidade exclusiva de seguran&ccedil;a das pessoas e bens. As imagens s&atilde;o conservadas pelo prazo legal aplic&aacute;vel e n&atilde;o s&atilde;o partilhadas com terceiros, salvo por imposi&ccedil;&atilde;o legal ou judicial.</p>
+    </div>
+
+    <div class="tc-section" id="s9">
+      <div class="tc-section-num">Artigo 9</div>
+      <h2>Lei Aplic&aacute;vel e Resolu&ccedil;&atilde;o de Lit&iacute;gios</h2>
+      <p>Os presentes Termos e Condi&ccedil;&otilde;es s&atilde;o regidos pela lei portuguesa. Em caso de lit&iacute;gio, o cliente pode recorrer a entidades de resolu&ccedil;&atilde;o alternativa de lit&iacute;gios de consumo, nos termos da Lei n.&ordm; 144/2015, de 8 de setembro.</p>
+      <p>O <strong>Centro de Arbitragem de Conflitos de Consumo de Lisboa</strong> &eacute; a entidade competente para os contratos celebrados no Concelho de Lisboa. Mais informa&ccedil;&otilde;es dispon&iacute;veis em <a href="https://www.centroarbitragemlisboa.pt" target="_blank" style="color:var(--red)">www.centroarbitragemlisboa.pt</a>.</p>
+      <p>Em alternativa, as partes podem acordar a submiss&atilde;o do lit&iacute;gio a arbitragem volunt&aacute;ria, nos termos da Lei da Arbitragem Volunt&aacute;ria (Lei n.&ordm; 63/2011, de 14 de dezembro). Sem preju&iacute;zo do recurso a meios alternativos, qualquer lit&iacute;gio ser&aacute; submetido, em &uacute;ltima inst&acirc;ncia, &agrave; jurisdi&ccedil;&atilde;o dos tribunais portugueses competentes.</p>
+    </div>
+
+    <div class="tc-section" id="s10">
+      <div class="tc-section-num">Artigo 10</div>
+      <h2>Altera&ccedil;&otilde;es aos Termos e Condi&ccedil;&otilde;es</h2>
+      <p>O ParqueP5 reserva-se o direito de alterar os presentes Termos e Condi&ccedil;&otilde;es a qualquer momento, sem aviso pr&eacute;vio, sendo as altera&ccedil;&otilde;es aplic&aacute;veis a partir da data de publica&ccedil;&atilde;o no website www.parquep5.pt. A vers&atilde;o aplic&aacute;vel a cada reserva &eacute; aquela que se encontra em vigor &agrave; data da confirma&ccedil;&atilde;o da reserva.</p>
+    </div>
+
+    <div class="tc-section" id="s11">
+      <div class="tc-section-num">Contactos</div>
+      <h2>Contactos</h2>
+      <p>Para qualquer quest&atilde;o relacionada com estes Termos e Condi&ccedil;&otilde;es, reservas ou servi&ccedil;os:</p>
+      <div class="contact-grid">
+        <div class="contact-item"><div class="contact-key">Telefone</div><div class="contact-val"><a href="tel:+351215954758">+351 215 954 758</a></div></div>
+        <div class="contact-item"><div class="contact-key">Apoio ao cliente</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection#8feeffe0e6e0eee0ece3e6eae1fbeacfffeefdfefaeaffbaa1fffb"><span class="__cf_email__" data-cfemail="cbaabba4a2a4aaa4a8a7a2aea5bfae8bbbaab9babeaebbfee5bbbf">[email&#160;protected]</span></a></div></div>
+        <div class="contact-item"><div class="contact-key">Reservas</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection#5426312731262235271424352625213124617a2420"><span class="__cf_email__" data-cfemail="3143544254434750427141504340445441041f4145">[email&#160;protected]</span></a></div></div>
+        <div class="contact-item"><div class="contact-key">Website</div><div class="contact-val"><a href="https://www.parquep5.pt" target="_blank">www.parquep5.pt</a></div></div>
+        <div class="contact-item" style="grid-column:1/-1"><div class="contact-key">Morada</div><div class="contact-val">Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho</div></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-info"><strong>PARQUE P5</strong><br>Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho<br><a href="/cdn-cgi/l/email-protection#4a2b3a2523252b252926232f243e2f0a3a2b383b3f2f3a7f643a3e" style="color:rgba(255,255,255,.4);text-decoration:none"><span class="__cf_emai

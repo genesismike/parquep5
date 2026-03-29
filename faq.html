@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — ParqueP5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;800&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E10600;--red-dark:#b80500;--black:#000;--white:#fff;--off-white:#f5f5f5;--gray:#888;--text:#1a1a1a;--border:#e8e8e8}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--off-white);color:var(--text);line-height:1.7}
+
+nav{background:var(--black);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:70px;border-bottom:3px solid var(--red);position:sticky;top:0;z-index:100}
+.logo{display:flex;flex-direction:column;text-decoration:none}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--white);letter-spacing:1px;text-transform:uppercase;line-height:1}
+.logo-text span{color:var(--red)}
+.logo-line{width:100%;height:3px;background:var(--red);margin-top:3px}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-phone{color:var(--white);text-decoration:none;font-size:15px;font-weight:700;transition:color .2s}
+.nav-phone:hover{color:var(--red)}
+.nav-back{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s}
+.nav-back:hover{color:var(--white)}
+
+/* HERO */
+.hero{background:var(--black);padding:52px 48px 60px;border-bottom:3px solid var(--red);position:relative;overflow:hidden}
+.hero::after{content:'?';position:absolute;right:48px;bottom:-20px;font-family:'Barlow Condensed',sans-serif;font-size:320px;font-weight:900;color:rgba(255,255,255,.03);line-height:1;pointer-events:none}
+.hero-inner{max-width:860px;margin:0 auto;position:relative}
+.hero-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:12px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,64px);font-weight:900;color:var(--white);text-transform:uppercase;line-height:1;margin-bottom:16px}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.55);max-width:520px;line-height:1.7}
+
+/* SEARCH */
+.search-bar{max-width:860px;margin:-28px auto 0;padding:0 48px;position:relative;z-index:10}
+.search-wrap{position:relative}
+.search-input{width:100%;padding:18px 20px 18px 52px;border:none;border-radius:8px;font-family:'Barlow',sans-serif;font-size:15px;color:var(--text);background:var(--white);box-shadow:0 8px 40px rgba(0,0,0,.2);outline:none}
+.search-input:focus{box-shadow:0 8px 40px rgba(0,0,0,.25),0 0 0 3px rgba(225,6,0,.12)}
+.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px;pointer-events:none;opacity:.4}
+
+/* LAYOUT */
+.layout{max-width:860px;margin:0 auto;padding:48px 48px 80px}
+
+/* CATEGORIAS */
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.cat-tab{padding:8px 18px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--gray);transition:all .2s;white-space:nowrap}
+.cat-tab:hover{border-color:var(--red);color:var(--red)}
+.cat-tab.active{background:var(--red);border-color:var(--red);color:var(--white)}
+
+/* FAQ SECTIONS */
+.faq-section{margin-bottom:48px}
+.faq-section-title{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.faq-section-icon{width:40px;height:40px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.faq-section-title h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--black);text-transform:uppercase}
+
+/* ACCORDION */
+.faq-item{background:var(--white);border-radius:6px;border:1px solid var(--border);margin-bottom:8px;overflow:hidden;transition:box-shadow .2s}
+.faq-item:hover{box-shadow:0 4px 20px rgba(0,0,0,.07)}
+.faq-item.open{border-color:rgba(225,6,0,.25);box-shadow:0 4px 24px rgba(225,6,0,.08)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;cursor:pointer;user-select:none}
+.faq-q-text{font-size:15px;font-weight:700;color:var(--black);line-height:1.4;flex:1}
+.faq-item.open .faq-q-text{color:var(--red)}
+.faq-toggle{width:28px;height:28px;border-radius:50%;background:var(--off-white);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .3s;font-size:14px;color:var(--gray);font-weight:700}
+.faq-item.open .faq-toggle{background:var(--red);color:var(--white);transform:rotate(45deg)}
+.faq-a{display:none;padding:0 24px 20px;font-size:14px;color:#555;line-height:1.75;border-top:1px solid #f5f5f5}
+.faq-a p{margin-bottom:10px}
+.faq-a p:last-child{margin-bottom:0}
+.faq-item.open .faq-a{display:block}
+.faq-a a{color:var(--red);font-weight:600;text-decoration:none}
+.faq-a a:hover{text-decoration:underline}
+.faq-a strong{color:var(--black)}
+.faq-a ul{margin:8px 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px}
+.faq-a ul li{display:flex;gap:8px}
+.faq-a ul li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0}
+
+/* NO RESULTS */
+.no-results{text-align:center;padding:60px 20px;display:none}
+.no-results h3{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--black);text-transform:uppercase;margin-bottom:8px}
+.no-results p{color:var(--gray);font-size:14px}
+
+/* CTA STRIP */
+.cta-strip{background:var(--red);padding:56px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-strip::before{content:'✈';position:absolute;left:5%;top:50%;transform:translateY(-50%);font-size:120px;opacity:.08;pointer-events:none}
+.cta-strip::after{content:'✈';position:absolute;right:5%;top:50%;transform:translateY(-50%) scaleX(-1);font-size:120px;opacity:.08;pointer-events:none}
+.cta-strip h2{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;color:var(--white);text-transform:uppercase;margin-bottom:10px}
+.cta-strip p{color:rgba(255,255,255,.75);font-size:16px;margin-bottom:28px}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-white{padding:15px 36px;background:var(--white);color:var(--red);border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;cursor:pointer;text-decoration:none;text-transform:uppercase;transition:background .2s}
+.btn-white:hover{background:#f0f0f0}
+.btn-outline-white{padding:15px 36px;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-decoration:none;text-transform:uppercase;transition:border-color .2s}
+.btn-outline-white:hover{border-color:white}
+
+footer{background:var(--black);border-top:3px solid var(--red);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-info{color:rgba(255,255,255,.4);font-size:13px;line-height:1.8}
+.footer-info strong{color:rgba(255,255,255,.7)}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:12px;transition:color .2s}
+.footer-links a:hover{color:var(--red)}
+
+@media(max-width:700px){
+  nav,.hero,.cta-strip,footer{padding-left:20px;padding-right:20px}
+  .search-bar{padding:0 20px}
+  .layout{padding:40px 20px 60px}
+  .cat-tabs{gap:6px}
+  .cat-tab{font-size:12px;padding:7px 14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-text">PARQUE <span>P5</span></span><div class="logo-line"></div></div>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html">&#8592; Voltar ao site</a>
+    <a class="nav-phone" href="tel:+351215954758">&#128222; +351 215 954 758</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Perguntas frequentes</div>
+    <h1>Como podemos<br>ajud&aacute;-lo?</h1>
+    <p class="hero-sub">Encontre respostas r&aacute;pidas sobre reservas, pre&ccedil;os, transfer, estacionamento e muito mais.</p>
+  </div>
+</div>
+
+<div class="search-bar">
+  <div class="search-wrap">
+    <span class="search-icon">&#128269;</span>
+    <input class="search-input" type="text" id="faq-search" placeholder="Pesquisar nas perguntas frequentes..." oninput="window.filterFaq(this.value)">
+  </div>
+</div>
+
+<div class="layout">
+
+  <div class="cat-tabs">
+    <button class="cat-tab active" onclick="window.filterCat('todas', this)">Todas</button>
+    <button class="cat-tab" onclick="window.filterCat('reservas', this)">Reservas e Pre&ccedil;os</button>
+    <button class="cat-tab" onclick="window.filterCat('transfer', this)">Chegada e Transfer</button>
+    <button class="cat-tab" onclick="window.filterCat('estacionamento', this)">Estacionamento</button>
+    <button class="cat-tab" onclick="window.filterCat('extras', this)">Extras e Servi&ccedil;os</button>
+    <button class="cat-tab" onclick="window.filterCat('seguranca', this)">Seguran&ccedil;a</button>
+  </div>
+
+  <div id="no-results" class="no-results">
+    <h3>Sem resultados</h3>
+    <p>N&atilde;o encontr&aacute;mos perguntas com esse termo. Tente uma pesquisa diferente ou <a href="tel:+351215954758" style="color:var(--red)">ligue-nos directamente</a>.</p>
+  </div>
+
+  <!-- RESERVAS E PREÇOS -->
+  <div class="faq-section" data-cat="reservas">
+    <div class="faq-section-title">
+      <div class="faq-section-icon">&#128203;</div>
+      <h2>Reservas e Pre&ccedil;os</h2>
+    </div>
+
+    <div class="faq-item" data-q="como fazer reserva parquep5">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Como fa&ccedil;o uma reserva no ParqueP5?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>A reserva &eacute; feita directamente neste site. Preenche os dados pessoais, as datas e horas de entrada e sa&iacute;da, escolhe o tipo de estacionamento e, se quiser, adiciona servi&ccedil;os extra como lavagem ou carregamento el&eacute;ctrico.</p>
+        <p>Ap&oacute;s submeter o formul&aacute;rio, a nossa equipa confirma a disponibilidade e entra em contacto em menos de 1 hora.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="preço dia hora tarifa custo valor">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">O pre&ccedil;o &eacute; calculado por dia ou por hora?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>As tarifas s&atilde;o calculadas <strong>por dia de calend&aacute;rio</strong> — cada dia conta, tanto o dia de entrada como o de sa&iacute;da. Por exemplo: entrar a 1 de Maio e sair a 4 de Maio equivale a 4 dias.</p>
+        <p>Os pre&ccedil;os s&atilde;o fixos por n&uacute;mero de dias (at&eacute; 30 dias), com surcharge di&aacute;rio a partir do 31.&ordm; dia. Pode simular o valor exacto no formul&aacute;rio de reserva.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="pagamento antecipado regresso momento">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">&Eacute; necess&aacute;rio pagar antecipadamente?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p><strong>N&atilde;o.</strong> O pagamento &eacute; efectuado no momento da sa&iacute;da, ap&oacute;s o regresso da viagem. N&atilde;o &eacute; cobrado qualquer valor &agrave; chegada nem na reserva.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="alterar cancelar reserva mudança datas">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">&Eacute; poss&iacute;vel alterar ou cancelar a reserva?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p><strong>Sim.</strong> Altera&ccedil;&otilde;es de datas ou hor&aacute;rios s&atilde;o aceites sem qualquer custo, sujeitas a disponibilidade.</p>
+        <p>O cancelamento pode ser feito sem penaliza&ccedil;&atilde;o at&eacute; <strong>24 horas antes</strong> da hora de entrada prevista. Para cancelar ou alterar, basta contactar-nos por telefone ou email.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="confirmação reserva email confirmado">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Como sei que a minha reserva est&aacute; confirmada?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Ap&oacute;s submeter o pedido de reserva, a nossa equipa entra em contacto <strong>em menos de 1 hora</strong> por telefone ou email para confirmar a disponibilidade e finalizar a reserva.</p>
+        <p>Se n&atilde;o receber contacto dentro desse prazo, ligue-nos directamente para <a href="tel:+351215954758">+351 215 954 758</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHEGADA E TRANSFER -->
+  <div class="faq-section" data-cat="transfer">
+    <div class="faq-section-title">
+      <div class="faq-section-icon">&#128651;</div>
+      <h2>Chegada ao Parque e Transfer</h2>
+    </div>
+
+    <div class="faq-item" data-q="onde fica localização morada endereço prior velho">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Onde fica o ParqueP5?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>O ParqueP5 situa-se em <strong>Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho</strong> — a cerca de 5 minutos do terminal do Aeroporto de Lisboa.</p>
+        <p>
+          <a href="https://maps.app.goo.gl/VYpCJWYWSTDjhnoQ8" target="_blank">&#128205; Google Maps</a>
+          &nbsp;&nbsp;
+          <a href="https://waze.com/ul?ll=38.7833,-9.1189&navigate=yes" target="_blank">&#128663; Waze</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="transfer gratuito aeroporto terminal autocarro como funciona">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Como funciona o transfer para o aeroporto?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>O transfer entre o ParqueP5 e o terminal do aeroporto &eacute; <strong>gratuito e opera 24 horas por dia, 365 dias por ano</strong>.</p>
+        <p>No dia da partida, dirija-se ao parque, fa&ccedil;a o check-in nas nossas instala&ccedil;&otilde;es e ser&aacute; transportado ao terminal de forma coordenada. N&atilde;o &eacute; necess&aacute;rio aguardar &mdash; a transfer&ecirc;ncia &eacute; praticamente imediata.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="quanto tempo antes antecedência chegar parque partida">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Com que antecedência devo chegar ao parque antes do voo?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Recomendamos que chegue ao ParqueP5 com pelo menos <strong>30 minutos de antecedência</strong> relativamente &agrave; hora de abertura do check-in do seu voo, acrescido do tempo de transfer at&eacute; ao terminal (aproximadamente 5&ndash;10 minutos).</p>
+        <p>Como refer&ecirc;ncia geral das companhias a&eacute;reas:</p>
+        <ul>
+          <li>Voos internacionais: 2 horas antes do embarque</li>
+          <li>Voos dom&eacute;sticos: 1 hora antes do embarque</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="regresso chegada pickup recolha aterrar voo">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Como funciona o regresso &mdash; quando aterro, o que fa&ccedil;o?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Quando aterrar, ligue-nos para <a href="tel:+351215954758"><strong>+351 215 954 758</strong></a>. A nossa equipa coordena o pickup no terminal e a viatura estar&aacute; pronta quando chegar ao parque.</p>
+        <p>O pagamento &eacute; efectuado neste momento, &agrave; sa&iacute;da.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="atraso voo perder voo transfer responsabilidade">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">O ParqueP5 garante que n&atilde;o perco o voo?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>O transfer opera de forma cont&iacute;nua e &eacute; optimizado para ser r&aacute;pido. No entanto, n&atilde;o nos &eacute; poss&iacute;vel garantir o cumprimento de hor&aacute;rios de voo em caso de condi&ccedil;&otilde;es excepcionais de tr&aacute;fego ou intempéries fora do nosso controlo.</p>
+        <p>Para uma margem confort&aacute;vel, recomendamos sempre chegar ao parque com <strong>pelo menos 30 minutos a mais</strong> do que o tempo m&iacute;nimo recomendado pela companhia a&eacute;rea.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESTACIONAMENTO -->
+  <div class="faq-section" data-cat="estacionamento">
+    <div class="faq-section-title">
+      <div class="faq-section-icon">&#127359;</div>
+      <h2>Tipos de Estacionamento</h2>
+    </div>
+
+    <div class="faq-item" data-q="tipos estacionamento coberto toldo descoberto diferença">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Quais s&atilde;o os tipos de estacionamento dispon&iacute;veis?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>O ParqueP5 oferece tr&ecirc;s modalidades:</p>
+        <ul>
+          <li><strong>Coberto</strong> &mdash; &aacute;rea totalmente coberta, m&aacute;xima prote&ccedil;&atilde;o contra sol, chuva e intempéries.</li>
+          <li><strong>Toldo</strong> &mdash; coberto com toldo, prote&ccedil;&atilde;o intermédia a um pre&ccedil;o mais acess&iacute;vel.</li>
+          <li><strong>Descoberto</strong> &mdash; estacionamento ao ar livre, op&ccedil;&atilde;o mais econ&oacute;mica.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="coberto toldo diferença proteção">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Qual a diferen&ccedil;a entre coberto e toldo?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>O <strong>coberto</strong> corresponde a uma &aacute;rea fechada a 100%, com tecto s&oacute;lido &mdash; a melhor op&ccedil;&atilde;o para quem pretende m&aacute;xima prote&ccedil;&atilde;o da viatura.</p>
+        <p>O <strong>toldo</strong> oferece cobertura parcial atrav&eacute;s de uma estrutura com toldo, protegendo do sol directo e de chuva ligeira, a um pre&ccedil;o intermédia entre o coberto e o descoberto.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="viatura grande suv carrinha dimensões">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Viaturas grandes (SUV, carrinha) t&ecirc;m condi&ccedil;&otilde;es diferentes?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Podem aplicar-se condi&ccedil;&otilde;es espec&iacute;ficas para viaturas acima de determinado comprimento ou altura. Se tiver d&uacute;vidas sobre a sua viatura, contacte-nos antes de reservar para confirmar disponibilidade e eventuais diferen&ccedil;as de tarifa.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="leve a chave chave cliente viagem guardar">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Posso ficar com a chave da minha viatura durante a viagem?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Sim, atrav&eacute;s do servi&ccedil;o <strong>Leve a Chave</strong> (&#8364;15). Ao entregar a viatura nas nossas instala&ccedil;&otilde;es, a chave fica consigo durante toda a viagem &mdash; a viatura n&atilde;o &eacute; movida enquanto estiver ausente.</p>
+        <p>Esta op&ccedil;&atilde;o est&aacute; dispon&iacute;vel para as modalidades em que a entrega &eacute; feita no parque.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXTRAS E SERVIÇOS -->
+  <div class="faq-section" data-cat="extras">
+    <div class="faq-section-title">
+      <div class="faq-section-icon">&#10010;</div>
+      <h2>Extras e Servi&ccedil;os Adicionais</h2>
+    </div>
+
+    <div class="faq-item" data-q="lavagem carro serviço extra disponível">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Posso pedir a lavagem do carro durante a estadia?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Sim. O servi&ccedil;o de <strong>Lavagem Completa</strong> (exterior + interior, &#8364;30) pode ser adicionado no momento da reserva. &Eacute; s&oacute; seleccion&aacute;-lo como extra e a viatura estará limpa quando regressar.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="carregamento elétrico EV carro eléctrico bateria">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Tenho um ve&iacute;culo el&eacute;ctrico &mdash; posso carregar durante a estadia?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Sim. O servi&ccedil;o de <strong>Carregamento El&eacute;ctrico</strong> (&#8364;25) est&aacute; dispon&iacute;vel como extra, sujeito a disponibilidade de ponto de carregamento. Regresse com autonomia e sem desvios de rota.</p>
+        <p>Se tiver d&uacute;vidas sobre compatibilidade com o seu ve&iacute;culo, contacte-nos antes de reservar.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="extras preços custos adicionais serviços">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Quais os extras dispon&iacute;veis e quanto custam?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Os servi&ccedil;os extra dispon&iacute;veis s&atilde;o:</p>
+        <ul>
+          <li><strong>Lavagem Completa</strong> (ext. + interior) &mdash; &#8364;30</li>
+          <li><strong>Carregamento El&eacute;ctrico</strong> &mdash; &#8364;25 (sujeito a disponibilidade)</li>
+          <li><strong>Leve a Chave</strong> &mdash; &#8364;15</li>
+        </ul>
+        <p>Todos os extras s&atilde;o seleccionados durante o processo de reserva e adicionados &agrave; estimativa de pre&ccedil;o.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEGURANÇA -->
+  <div class="faq-section" data-cat="seguranca">
+    <div class="faq-section-title">
+      <div class="faq-section-icon">&#128274;</div>
+      <h2>Seguran&ccedil;a e Responsabilidade</h2>
+    </div>
+
+    <div class="faq-item" data-q="segurança videovigilância cctv câmeras proteção viatura">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">O ParqueP5 &eacute; um estacionamento seguro?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Sim. O ParqueP5 disp&otilde;e de:</p>
+        <ul>
+          <li>Videovigilância (CCTV) permanente em todo o per&iacute;metro</li>
+          <li>Veda&ccedil;&atilde;o e ilumina&ccedil;&atilde;o nocturna</li>
+          <li>Controlo de acessos</li>
+          <li>Equipa presente 24h por dia, todos os dias do ano</li>
+        </ul>
+        <p>As condi&ccedil;&otilde;es de responsabilidade e seguro est&atilde;o detalhadas nos <a href="termos.html">Termos e Condi&ccedil;&otilde;es</a>.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="dano avaria arranhão responsabilidade sinistro reclamação">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">O que acontece se a minha viatura sofrer um dano enquanto estiver no parque?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Qualquer dano, anomalia ou incidente deve ser comunicado ao respons&aacute;vel de turno <strong>imediatamente</strong> aquando da recolha da viatura, antes de sair das instala&ccedil;&otilde;es.</p>
+        <p>A reclama&ccedil;&atilde;o formal deve ser enviada para <a href="/cdn-cgi/l/email-protection#4322332c2a2c222c202f2a262d37260333223132362633766d3337"><span class="__cf_email__" data-cfemail="81e0f1eee8eee0eee2ede8e4eff5e4c1f1e0f3f0f4e4f1b4aff1f5">[email&#160;protected]</span></a> com descri&ccedil;&atilde;o detalhada e registo fotogr&aacute;fico. Respondemos no prazo de 10 dias &uacute;teis.</p>
+        <p>Consulte os <a href="termos.html">Termos e Condi&ccedil;&otilde;es</a> para o detalhe das exclus&otilde;es de responsabilidade (condi&ccedil;&otilde;es atmosf&eacute;ricas, objectos no interior, etc.).</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="pagamento não pagar fatura dívida retenção viatura">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">O que acontece se n&atilde;o efectuar o pagamento &agrave; sa&iacute;da?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Em caso de n&atilde;o pagamento, o ParqueP5 reserva-se o direito de reten&ccedil;&atilde;o sobre o ve&iacute;culo, nos termos do artigo 755.&ordm; do C&oacute;digo Civil, at&eacute; integral liquida&ccedil;&atilde;o do montante em d&iacute;vida, incluindo os dias adicionais entretanto decorridos.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-q="reclamação livro reclamações queixa insatisfação">
+      <div class="faq-q" onclick="window.toggle(this)">
+        <span class="faq-q-text">Como posso apresentar uma reclama&ccedil;&atilde;o?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">
+        <p>O ParqueP5 disponibiliza livro de reclama&ccedil;&otilde;es nas suas instala&ccedil;&otilde;es. Pode tamb&eacute;m reclamar:</p>
+        <ul>
+          <li>Por email: <a href="/cdn-cgi/l/email-protection#badbcad5d3d5dbd5d9d6d3dfd4cedffacadbc8cbcfdfca8f94cace"><span class="__cf_email__" data-cfemail="97f6e7f8fef8f6f8f4fbfef2f9e3f2d7e7f6e5e6e2f2e7a2b9e7e3">[email&#160;protected]</span></a></li>
+          <li>Atrav&eacute;s do <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclama&ccedil;&otilde;es online</a></li>
+          <li>Via <a href="https://ec.europa.eu/consumers/odr" target="_blank">Plataforma Europeia de Resolu&ccedil;&atilde;o de Lit&iacute;gios</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <h2>N&atilde;o encontrou resposta?</h2>
+  <p>A nossa equipa est&aacute; dispon&iacute;vel 24 horas por dia para o ajudar.</p>
+  <div class="cta-buttons">
+    <a href="index.html" class="btn-white">Fazer Reserva</a>
+    <a href="tel:+351215954758" class="btn-outline-white">&#128222; +351 215 954 758</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-info">
+    <strong>PARQUE P5</strong><br>
+    Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho<br>
+    <a href="/cdn-cgi/l/email-protection#94f5e4fbfdfbf5fbf7f8fdf1fae0f1d4e4f5e6e5e1f1e4a1bae4e0" style="color:rgba(255,255,255,.4);text-decoration:none"><span class="__cf_email__" data-cfemail="9dfcedf2f4f2fcf2fef1f4f8f3e9f8ddedfcefece8f8eda8b3ede9">[email&#160;protected]</span></a>
+  </div>
+  <div class="footer-links">
+    <a href="termos.html">Termos e Condi&ccedil;&otilde;es</a>
+    <a href="privacidade.html">Pol&iacute;tica de Privacidade</a>
+    <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclama&ccedil;&otilde;es</a>
+  </div>
+</footer>
+
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+window.toggle = function(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+};
+
+window.filterCat = function(cat, tabEl) {
+  document.querySelectorAll('.cat-tab').forEach(function(t) { t.classList.remove('active'); });
+  tabEl.classList.add('active');
+  document.getElementById('faq-search').value = '';
+  document.querySelectorAll('.faq-section').forEach(function(s) {
+    s.style.display = (cat === 'todas' || s.dataset.cat === cat) ? '' : 'none';
+  });
+  document.querySelectorAll('.faq-item').forEach(function(i) { i.style.display = ''; });
+  document.getElementById('no-results').style.display = 'none';
+};
+
+window.filterFaq = function(query) {
+  document.querySelectorAll('.cat-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelector('.cat-tab').classList.add('active');
+  var q = query.toLowerCase().trim();
+  var total = 0;
+  document.querySelectorAll('.faq-section').forEach(function(section) {
+    var vis = 0;
+    section.querySelectorAl

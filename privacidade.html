@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — ParqueP5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;800&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E10600;--red-dark:#b80500;--black:#000;--white:#fff;--off-white:#f5f5f5;--gray:#888;--text:#1a1a1a;--border:#e8e8e8}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--off-white);color:var(--text);line-height:1.7}
+nav{background:var(--black);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:70px;border-bottom:3px solid var(--red);position:sticky;top:0;z-index:100}
+.logo{display:flex;flex-direction:column;text-decoration:none}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--white);letter-spacing:1px;text-transform:uppercase;line-height:1}
+.logo-text span{color:var(--red)}
+.logo-line{width:100%;height:3px;background:var(--red);margin-top:3px}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-phone{color:var(--white);text-decoration:none;font-size:15px;font-weight:700;transition:color .2s}
+.nav-phone:hover{color:var(--red)}
+.nav-back{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s}
+.nav-back:hover{color:var(--white)}
+.hero{background:var(--black);padding:52px 48px;border-bottom:3px solid var(--red)}
+.hero-inner{max-width:860px;margin:0 auto}
+.hero-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:12px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:900;color:var(--white);text-transform:uppercase;line-height:1;margin-bottom:12px}
+.hero-meta{font-size:13px;color:rgba(255,255,255,.4)}
+.layout{max-width:1060px;margin:0 auto;padding:48px 48px 80px;display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start}
+.sidebar{position:sticky;top:90px}
+.toc-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.toc-list a{display:block;padding:7px 12px;font-size:13px;font-weight:600;color:var(--gray);text-decoration:none;border-radius:4px;transition:all .2s;border-left:2px solid transparent}
+.toc-list a:hover{color:var(--text);background:var(--white);border-left-color:var(--red)}
+.toc-list a.active{color:var(--red);background:var(--white);border-left-color:var(--red)}
+.content{background:var(--white);border-radius:8px;padding:48px;border:1px solid var(--border)}
+.tc-section{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+.tc-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.tc-section-num{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.tc-section h2{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--black);text-transform:uppercase;margin-bottom:20px;line-height:1.1}
+.tc-section h3{font-size:15px;font-weight:700;color:var(--black);margin:20px 0 10px;padding-left:12px;border-left:3px solid var(--red)}
+.tc-section p{font-size:15px;color:#444;margin-bottom:14px;line-height:1.75}
+.tc-section p:last-child{margin-bottom:0}
+.tc-section ul{margin:10px 0 14px 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.tc-section ul li{font-size:15px;color:#444;display:flex;gap:10px;align-items:flex-start}
+.tc-section ul li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px}
+.tc-section a{color:var(--red);text-decoration:none}
+.tc-section a:hover{text-decoration:underline}
+.info-box{background:#fff8f8;border:1px solid rgba(225,6,0,.15);border-left:3px solid var(--red);border-radius:4px;padding:16px 20px;margin:16px 0}
+.info-box p{font-size:14px;color:#555;margin:0;font-style:italic}
+.base-legal-grid{display:flex;flex-direction:column;gap:12px;margin:14px 0}
+.base-item{background:var(--off-white);border-radius:6px;padding:16px 18px;border-left:3px solid var(--red)}
+.base-item-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.base-item-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px}
+.base-item-detail{font-size:13px;color:var(--gray);line-height:1.6}
+.rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.right-item{background:var(--off-white);border-radius:6px;padding:14px 16px}
+.right-title{font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px}
+.right-desc{font-size:13px;color:var(--gray);line-height:1.5}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.contact-item{background:var(--off-white);border-radius:6px;padding:14px 16px}
+.contact-key{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.contact-val{font-size:14px;font-weight:600;color:var(--black)}
+.cnpd-box{background:var(--black);border-radius:6px;padding:20px 24px;margin-top:16px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.cnpd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.cnpd-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--white);margin-bottom:4px}
+.cnpd-detail{font-size:13px;color:rgba(255,255,255,.5)}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.tag{display:inline-block;background:var(--off-white);border:1px solid var(--border);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--gray)}
+footer{background:var(--black);border-top:3px solid var(--red);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-info{color:rgba(255,255,255,.4);font-size:13px;line-height:1.8}
+.footer-info strong{color:rgba(255,255,255,.7)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:12px;transition:color .2s}
+.footer-links a:hover{color:var(--red)}
+@media(max-width:860px){
+  nav,.hero,footer{padding-left:24px;padding-right:24px}
+  .layout{grid-template-columns:1fr;padding:24px}
+  .sidebar{position:static}.toc-list{display:none}
+  .content{padding:28px 24px}
+  .rights-grid,.contact-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-text">PARQUE <span>P5</span></span><div class="logo-line"></div></div>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html">&#8592; Voltar ao site</a>
+    <a class="nav-phone" href="tel:+351215954758">&#128222; +351 215 954 758</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Documentos legais</div>
+    <h1>Pol&iacute;tica de Privacidade</h1>
+    <div class="hero-meta">ParqueP5 &mdash; Estacionamento Privado | Aeroporto de Lisboa &nbsp;&middot;&nbsp; &Uacute;ltima actualiza&ccedil;&atilde;o: 29 de mar&ccedil;o de 2026</div>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="toc-label">Conte&uacute;do</div>
+    <ul class="toc-list">
+      <li><a href="#s1">1. Respons&aacute;vel</a></li>
+      <li><a href="#s2">2. Dados Recolhidos</a></li>
+      <li><a href="#s3">3. Finalidades e Bases Legais</a></li>
+      <li><a href="#s4">4. Cookies</a></li>
+      <li><a href="#s5">5. Partilha de Dados</a></li>
+      <li><a href="#s6">6. Prazos de Conserva&ccedil;&atilde;o</a></li>
+      <li><a href="#s7">7. Os seus Direitos</a></li>
+      <li><a href="#s8">8. Seguran&ccedil;a</a></li>
+      <li><a href="#s9">9. Menores</a></li>
+      <li><a href="#s10">10. Altera&ccedil;&otilde;es</a></li>
+      <li><a href="#s11">11. Contacto</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <p style="font-size:15px;color:#444;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border);line-height:1.75">A Opportunity Revival, Lda., titular da marca ParqueP5, est&aacute; comprometida com a prote&ccedil;&atilde;o dos dados pessoais dos seus clientes e visitantes, nos termos do Regulamento (UE) 2016/679 (RGPD) e demais legisla&ccedil;&atilde;o aplic&aacute;vel. Esta Pol&iacute;tica descreve como recolhemos, utilizamos, armazenamos e protegemos os seus dados pessoais, bem como os seus direitos enquanto titular dos dados.</p>
+
+    <div class="tc-section" id="s1">
+      <div class="tc-section-num">Artigo 1</div>
+      <h2>Respons&aacute;vel pelo Tratamento</h2>
+      <div class="contact-grid">
+        <div class="contact-item"><div class="contact-key">Raz&atilde;o social</div><div class="contact-val">Opportunity Revival, Lda.</div></div>
+        <div class="contact-item"><div class="contact-key">NIF</div><div class="contact-val">515 967 300</div></div>
+        <div class="contact-item"><div class="contact-key">Sede</div><div class="contact-val">Quinta das Pretas, 2685-375 Prior Velho</div></div>
+        <div class="contact-item"><div class="contact-key">Instala&ccedil;&otilde;es</div><div class="contact-val">Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho</div></div>
+        <div class="contact-item"><div class="contact-key">Telefone</div><div class="contact-val"><a href="tel:+351215954758">+351 215 954 758</a></div></div>
+        <div class="contact-item"><div class="contact-key">Email</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection#fb9a8b9492949a949897929e958f9ebb8b9a898a8e9e8bced58b8f"><span class="__cf_email__" data-cfemail="e283928d8b8d838d818e8b878c9687a292839093978792d7cc9296">[email&#160;protected]</span></a></div></div>
+      </div>
+    </div>
+
+    <div class="tc-section" id="s2">
+      <div class="tc-section-num">Artigo 2</div>
+      <h2>Dados Pessoais Recolhidos</h2>
+      <h3>2.1 Dados fornecidos directamente pelo utilizador</h3>
+      <p>No &acirc;mbito da utiliza&ccedil;&atilde;o dos nossos servi&ccedil;os e do website, recolhemos os seguintes dados pessoais:</p>
+      <ul>
+        <li>Nome completo</li>
+        <li>N&uacute;mero de telefone</li>
+        <li>Endere&ccedil;o de correio electr&oacute;nico</li>
+        <li>Matr&iacute;cula do ve&iacute;culo</li>
+        <li>NIF, morada e raz&atilde;o social (quando solicitada factura&ccedil;&atilde;o)</li>
+        <li>Informa&ccedil;&atilde;o de voo (n&uacute;mero de voo, data e hora de chegada)</li>
+      </ul>
+      <h3>2.2 Dados recolhidos automaticamente</h3>
+      <p>Quando visita o nosso website, recolhemos automaticamente dados t&eacute;cnicos e de navega&ccedil;&atilde;o, incluindo:</p>
+      <ul>
+        <li>Endere&ccedil;o IP</li>
+        <li>Tipo de browser e sistema operativo</li>
+        <li>P&aacute;ginas visitadas e tempo de perman&ecirc;ncia</li>
+        <li>Origem do tr&aacute;fego (motor de pesquisa, an&uacute;ncio, refer&ecirc;ncia directa)</li>
+        <li>Intera&ccedil;&otilde;es com formul&aacute;rios e bot&otilde;es</li>
+      </ul>
+      <div class="info-box"><p>Estes dados s&atilde;o recolhidos atrav&eacute;s de ferramentas como o Google Analytics 4, Google Ads e Meta Pixel (Facebook/Instagram), geridos via Google Tag Manager. A sua recolha est&aacute; sujeita ao seu consentimento, prestado atrav&eacute;s do banner de cookies.</p></div>
+      <h3>2.3 Dados de videovigilância</h3>
+      <p>As instala&ccedil;&otilde;es f&iacute;sicas do ParqueP5 disp&otilde;em de sistema de videovigilância. As imagens captadas s&atilde;o dados pessoais tratados exclusivamente para fins de seguran&ccedil;a de pessoas e bens, conservadas pelo prazo m&aacute;ximo de 30 dias, nos termos da legisla&ccedil;&atilde;o aplic&aacute;vel.</p>
+    </div>
+
+    <div class="tc-section" id="s3">
+      <div class="tc-section-num">Artigo 3</div>
+      <h2>Finalidades e Bases Legais do Tratamento</h2>
+      <div class="base-legal-grid">
+        <div class="base-item">
+          <div class="base-item-label">Art. 6.&ordm;, n.&ordm; 1, al. b) RGPD</div>
+          <div class="base-item-title">3.1 Execu&ccedil;&atilde;o do contrato de servi&ccedil;os</div>
+          <div class="base-item-detail">Gest&atilde;o da reserva, presta&ccedil;&atilde;o do servi&ccedil;o de estacionamento e transfer, emiss&atilde;o de factura e comunica&ccedil;&otilde;es operacionais. <em>Dados: nome, contacto, matr&iacute;cula, informa&ccedil;&atilde;o de voo, dados de factura&ccedil;&atilde;o.</em></div>
+        </div>
+        <div class="base-item">
+          <div class="base-item-label">Art. 6.&ordm;, n.&ordm; 1, al. c) RGPD</div>
+          <div class="base-item-title">3.2 Cumprimento de obriga&ccedil;&otilde;es legais</div>
+          <div class="base-item-detail">Cumprimento de obriga&ccedil;&otilde;es fiscais, cont&aacute;bil&iacute;sticas e de reporte &agrave;s autoridades competentes. <em>Dados: dados de factura&ccedil;&atilde;o, registos de transa&ccedil;&otilde;es.</em></div>
+        </div>
+        <div class="base-item">
+          <div class="base-item-label">Art. 6.&ordm;, n.&ordm; 1, al. f) RGPD</div>
+          <div class="base-item-title">3.3 Interesse leg&iacute;timo &mdash; seguran&ccedil;a</div>
+          <div class="base-item-detail">Seguran&ccedil;a das instala&ccedil;&otilde;es, ve&iacute;culos e pessoas. <em>Dados: imagens de videovigilância, registos de acesso.</em></div>
+        </div>
+        <div class="base-item">
+          <div class="base-item-label">Art. 6.&ordm;, n.&ordm; 1, al. a) RGPD &mdash; Consentimento</div>
+          <div class="base-item-title">3.4 Comunica&ccedil;&otilde;es de marketing</div>
+          <div class="base-item-detail">Envio de comunica&ccedil;&otilde;es promocionais, novidades e ofertas. O consentimento pode ser retirado a qualquer momento. <em>Dados: email, telefone.</em></div>
+        </div>
+        <div class="base-item">
+          <div class="base-item-label">Art. 6.&ordm;, n.&ordm; 1, al. a) RGPD &mdash; Consentimento</div>
+          <div class="base-item-title">3.5 An&aacute;lise de tr&aacute;fego e publicidade digital</div>
+          <div class="base-item-detail">An&aacute;lise do comportamento dos visitantes (Google Analytics 4), medi&ccedil;&atilde;o de convers&otilde;es (Google Ads), e apresenta&ccedil;&atilde;o de an&uacute;ncios personalizados (remarketing via Meta Pixel e Google Ads). Apenas mediante consentimento no banner de cookies. <em>Dados: navega&ccedil;&atilde;o, IP, identificadores de dispositivo.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc-section" id="s4">
+      <div class="tc-section-num">Artigo 4</div>
+      <h2>Cookies e Tecnologias de Rastreio</h2>
+      <p>O website do ParqueP5 utiliza cookies e tecnologias similares &mdash; pequenos ficheiros de texto armazenados no seu dispositivo que permitem reconhecer o seu browser e recolher determinadas informa&ccedil;&otilde;es.</p>
+      <h3>4.1 Tipos de cookies utilizados</h3>
+      <div class="tag-row">
+        <span class="tag">&#9679; Essenciais</span>
+        <span class="tag">&#9675; Anal&iacute;ticos</span>
+        <span class="tag">&#9675; Publicidade</span>
+      </div>
+      <ul>
+        <li><strong>Cookies essenciais</strong> &mdash; necess&aacute;rios para o funcionamento b&aacute;sico do website. N&atilde;o requerem consentimento.</li>
+        <li><strong>Cookies anal&iacute;ticos</strong> &mdash; Google Analytics 4, via Google Tag Manager. Permitem compreender como os visitantes utilizam o site. Requerem consentimento.</li>
+        <li><strong>Cookies de publicidade</strong> &mdash; Google Ads e Meta Pixel (Facebook/Instagram). Utilizados para medir convers&otilde;es e apresentar an&uacute;ncios personalizados (remarketing). Requerem consentimento.</li>
+      </ul>
+      <h3>4.2 Gest&atilde;o de consentimento</h3>
+      <p>Ao aceder ao website pela primeira vez, ser&aacute; apresentado um banner de cookies que lhe permite aceitar ou recusar cada categoria. Pode alterar as suas prefer&ecirc;ncias a qualquer momento atrav&eacute;s das defini&ccedil;&otilde;es de cookies dispon&iacute;veis no rodap&eacute; do site. A recusa de cookies n&atilde;o essenciais n&atilde;o afecta a possibilidade de utilizar o website nem de efectuar reservas.</p>
+      <h3>4.3 Cookies de terceiros</h3>
+      <p>O ParqueP5 utiliza servi&ccedil;os de terceiros que podem instalar os seus pr&oacute;prios cookies:</p>
+      <ul>
+        <li><strong>Google</strong> &mdash; <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></li>
+        <li><strong>Meta (Facebook/Instagram)</strong> &mdash; <a href="https://www.facebook.com/privacy/policy" target="_blank">www.facebook.com/privacy/policy</a></li>
+      </ul>
+    </div>
+
+    <div class="tc-section" id="s5">
+      <div class="tc-section-num">Artigo 5</div>
+      <h2>Partilha de Dados com Terceiros</h2>
+      <p>O ParqueP5 <strong>n&atilde;o vende nem cede</strong> os seus dados pessoais a terceiros para fins comerciais pr&oacute;prios desses terceiros. Os seus dados podem ser partilhados nas seguintes situa&ccedil;&otilde;es:</p>
+      <ul>
+        <li><strong>Prestadores de servi&ccedil;os tecnol&oacute;gicos</strong> &mdash; Google LLC (Google Analytics, Google Ads, Google Tag Manager) e Meta Platforms Ireland Ltd. (Meta Pixel), no &acirc;mbito das finalidades descritas na sec&ccedil;&atilde;o 3.5, mediante o seu consentimento. Estes fornecedores actuam como subcontratantes sujeitos a obriga&ccedil;&otilde;es contratuais de prote&ccedil;&atilde;o de dados.</li>
+        <li><strong>Autoridades competentes</strong> &mdash; quando legalmente obrigado, nomeadamente para cumprimento de obriga&ccedil;&otilde;es fiscais ou por ordem judicial.</li>
+        <li><strong>Seguradoras e entidades financeiras</strong> &mdash; exclusivamente para efeitos de gest&atilde;o de sinistros ou cobran&ccedil;as, nos termos previstos nos Termos e Condi&ccedil;&otilde;es Gerais.</li>
+      </ul>
+      <div class="info-box"><p><strong>Transf&ecirc;rencias internacionais:</strong> O Google e a Meta transferem dados para os Estados Unidos ao abrigo das cl&aacute;usulas contratuais-tipo aprovadas pela Comiss&atilde;o Europeia. Para mais informa&ccedil;&atilde;o, consulte as pol&iacute;ticas de privacidade dos respectivos fornecedores.</p></div>
+    </div>
+
+    <div class="tc-section" id="s6">
+      <div class="tc-section-num">Artigo 6</div>
+      <h2>Prazos de Conserva&ccedil;&atilde;o</h2>
+      <p>Os dados pessoais s&atilde;o conservados pelo per&iacute;odo estritamente necess&aacute;rio &agrave;s finalidades para que foram recolhidos:</p>
+      <ul>
+        <li><strong>Dados de reserva e factura&ccedil;&atilde;o</strong> &mdash; 10 anos, nos termos das obriga&ccedil;&otilde;es fiscais e cont&aacute;bil&iacute;sticas (C&oacute;digo do IRC e legisla&ccedil;&atilde;o tribut&aacute;ria).</li>
+        <li><strong>Dados de marketing</strong> (email, telefone) &mdash; at&eacute; &agrave; retirada do consentimento ou, na aus&ecirc;ncia de intera&ccedil;&atilde;o, por um per&iacute;odo m&aacute;ximo de 3 anos.</li>
+        <li><strong>Imagens de videovigilância</strong> &mdash; 30 dias, salvo se necess&aacute;rias para efeitos de participa&ccedil;&atilde;o a autoridades.</li>
+        <li><strong>Dados de navega&ccedil;&atilde;o e cookies</strong> &mdash; conforme os prazos definidos por cada cookie, dispon&iacute;veis na Pol&iacute;tica de Cookies.</li>
+      </ul>
+    </div>
+
+    <div class="tc-section" id="s7">
+      <div class="tc-section-num">Artigo 7</div>
+      <h2>Os seus Direitos</h2>
+      <p>Ao abrigo do RGPD, tem os seguintes direitos relativamente aos seus dados pessoais:</p>
+      <div class="rights-grid">
+        <div class="right-item"><div class="right-title">&#10003; Acesso</div><div class="right-desc">Obter confirma&ccedil;&atilde;o sobre se os seus dados s&atilde;o tratados e aceder aos mesmos.</div></div>
+        <div class="right-item"><div class="right-title">&#10003; Rectifica&ccedil;&atilde;o</div><div class="right-desc">Corrigir dados inexactos ou incompletos.</div></div>
+        <div class="right-item"><div class="right-title">&#10003; Apagamento</div><div class="right-desc">Solicitar a elimina&ccedil;&atilde;o dos dados, nos casos previstos no RGPD.</div></div>
+        <div class="right-item"><div class="right-title">&#10003; Limita&ccedil;&atilde;o</div><div class="right-desc">Restringir o tratamento em determinadas circunst&acirc;ncias.</div></div>
+        <div class="right-item"><div class="right-title">&#10003; Oposi&ccedil;&atilde;o</div><div class="right-desc">Opor-se ao tratamento baseado em interesse leg&iacute;timo ou para fins de marketing directo.</div></div>
+        <div class="right-item"><div class="right-title">&#10003; Portabilidade</div><div class="right-desc">Receber os seus dados num formato estruturado e leg&iacute;vel por m&aacute;quina.</div></div>
+        <div class="right-item" style="grid-column:1/-1"><div class="right-title">&#10003; Retirada do consentimento</div><div class="right-desc">A qualquer momento, sem afectar a licitude do tratamento anterior.</div></div>
+      </div>
+      <p>Para exercer qualquer um destes direitos, contacte-nos atrav&eacute;s de <a href="/cdn-cgi/l/email-protection#1e7f6e7177717f717d72777b706a7b5e6e7f6c6f6b7b6e2b306e6a"><span class="__cf_email__" data-cfemail="18796877717779777b74717d766c7d5868796a696d7d682d36686c">[email&#160;protected]</span></a>. Responderemos no prazo m&aacute;ximo de 30 dias.</p>
+      <p>Tem ainda o direito de apresentar reclama&ccedil;&atilde;o &agrave; autoridade de controlo nacional:</p>
+      <div class="cnpd-box">
+        <div>
+          <div class="cnpd-label">Autoridade de controlo</div>
+          <div class="cnpd-name">CNPD</div>
+          <div class="cnpd-detail">Comiss&atilde;o Nacional de Prote&ccedil;&atilde;o de Dados</div>
+        </div>
+        <div>
+          <div class="cnpd-label">Website</div>
+          <div class="cnpd-detail"><a href="https://www.cnpd.pt" target="_blank" style="color:var(--red)">www.cnpd.pt</a></div>
+          <div class="cnpd-detail" style="margin-top:4px">Rua de S&atilde;o Bento, 148-3.&ordm;, 1200-821 Lisboa</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc-section" id="s8">
+      <div class="tc-section-num">Artigo 8</div>
+      <h2>Seguran&ccedil;a dos Dados</h2>
+      <p>O ParqueP5 adopta medidas t&eacute;cnicas e organizativas adequadas para proteger os dados pessoais contra acesso n&atilde;o autorizado, perda acidental, destrui&ccedil;&atilde;o ou divulga&ccedil;&atilde;o, incluindo controlo de acessos, encripta&ccedil;&atilde;o de dados em tr&acirc;nsito e forma&ccedil;&atilde;o dos colaboradores.</p>
+      <p>Em caso de viola&ccedil;&atilde;o de dados pessoais que constitua risco para os titulares, o ParqueP5 notificar&aacute; a CNPD no prazo de 72 horas e informar&aacute; os titulares afectados, nos termos dos artigos 33.&ordm; e 34.&ordm; do RGPD.</p>
+    </div>
+
+    <div class="tc-section" id="s9">
+      <div class="tc-section-num">Artigo 9</div>
+      <h2>Menores</h2>
+      <p>O website e os servi&ccedil;os do ParqueP5 n&atilde;o se destinam a menores de 16 anos. N&atilde;o recolhemos intencionalmente dados pessoais de menores. Se tiver conhecimento de que um menor nos forneceu dados pessoais sem consentimento parental, contacte-nos para que possamos proceder ao seu apagamento.</p>
+    </div>
+
+    <div class="tc-section" id="s10">
+      <div class="tc-section-num">Artigo 10</div>
+      <h2>Altera&ccedil;&otilde;es &agrave; Pol&iacute;tica de Privacidade</h2>
+      <p>O ParqueP5 reserva-se o direito de actualizar esta Pol&iacute;tica de Privacidade, nomeadamente para reflectir altera&ccedil;&otilde;es legislativas ou novas funcionalidades do website. A vers&atilde;o mais recente estar&aacute; sempre dispon&iacute;vel em <a href="https://www.parquep5.pt" target="_blank">www.parquep5.pt</a>.</p>
+      <p>Em caso de altera&ccedil;&otilde;es significativas, notificaremos os utilizadores com pelo menos 15 dias de antecedência por via do website ou por email.</p>
+    </div>
+
+    <div class="tc-section" id="s11">
+      <div class="tc-section-num">Artigo 11</div>
+      <h2>Contacto e Reclama&ccedil;&otilde;es</h2>
+      <p>Para qualquer quest&atilde;o relacionada com o tratamento dos seus dados pessoais:</p>
+      <div class="contact-grid">
+        <div class="contact-item"><div class="contact-key">Email</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection#cdacbda2a4a2aca2aea1a4a8a3b9a88dbdacbfbcb8a8bdf8e3bdb9"><span class="__cf_email__" data-cfemail="4120312e282e202e222d28242f35240131203330342431746f3135">[email&#160;protected]</span></a></div></div>
+        <div class="contact-item"><div class="contact-key">Telefone</div><div class="contact-val"><a href="tel:+351215954758">+351 215 954 758</a></div></div>
+        <div class="contact-item" style="grid-column:1/-1"><div class="contact-key">Morada</div><div class="contact-val">Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho</div></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-info"><strong>PARQUE P5</strong><br>Rua Fernando Namora, Lote 1, Figo Maduro, 2685-397 Prior Velho<br><a href="/cdn-cgi/l/email-protection#b5d4c5dadcdad4dad6d9dcd0dbc1d0f5c5d4c7c4c0d0c5809bc5c1" style="color:rgba(255,255,255,.4);text-decoration:none"><span class="__cf_email__" data-cfemail="49283926202628262a25202c273d2c0939283b383c2c397c67393d">[email&#160;protected]</span></a></div>
+  <div class="footer-links">
+    <a href="termos.html">Termos e Condi&ccedil;&otilde;es</a>
+    <a href="https://www
