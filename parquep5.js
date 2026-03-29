@@ -42,6 +42,55 @@ function calcularPreco() {
   disp.classList.add('visible');
 }
 
+window.validarExtras = function(changed) {
+  var chave    = document.getElementById('extra-chave');
+  var lavagem  = document.getElementById('extra-lavagem');
+  var eletrico = document.getElementById('extra-eletrico');
+  var aviso    = document.getElementById('extras-aviso');
+
+  // Se marcou "Leve a Chave" → desmarcar e desabilitar os outros
+  if (changed === 'chave' && chave.checked) {
+    lavagem.checked  = false;
+    eletrico.checked = false;
+    lavagem.disabled  = true;
+    eletrico.disabled = true;
+    setExtraDisabled('extra-lavagem', true);
+    setExtraDisabled('extra-eletrico', true);
+    if (aviso) aviso.style.display = 'block';
+  }
+  // Se marcou lavagem ou elétrico → desmarcar e desabilitar "Leve a Chave"
+  else if ((changed === 'lavagem' || changed === 'eletrico') && (lavagem.checked || eletrico.checked)) {
+    chave.checked  = false;
+    chave.disabled = true;
+    setExtraDisabled('extra-chave', true);
+    if (aviso) aviso.style.display = 'block';
+  }
+  // Se desmarcou tudo → reabilitar tudo
+  else if (!chave.checked && !lavagem.checked && !eletrico.checked) {
+    lavagem.disabled  = false;
+    eletrico.disabled = false;
+    chave.disabled    = false;
+    setExtraDisabled('extra-lavagem', false);
+    setExtraDisabled('extra-eletrico', false);
+    setExtraDisabled('extra-chave', false);
+    if (aviso) aviso.style.display = 'none';
+  }
+  calcularPreco();
+};
+
+function setExtraDisabled(id, disabled) {
+  var label = document.querySelector('label[for="' + id + '"]');
+  if (disabled) {
+    label.style.opacity = '0.35';
+    label.style.cursor  = 'not-allowed';
+    label.style.pointerEvents = 'none';
+  } else {
+    label.style.opacity = '';
+    label.style.cursor  = '';
+    label.style.pointerEvents = '';
+  }
+}
+
 function scrollToForm() {
   document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
 }
@@ -178,6 +227,19 @@ function showThankYou(d) {
 }
 
 function submitForm() {
+  // Validar checkboxes obrigatórios
+  var termos = document.getElementById('aceito-termos');
+  var priv   = document.getElementById('aceito-privacidade');
+  var err3   = document.getElementById('err-3');
+  if (!termos || !termos.checked || !priv || !priv.checked) {
+    if (err3) {
+      err3.textContent = '\u26a0 Por favor aceite os Termos e Condi\u00e7\u00f5es e a Pol\u00edtica de Privacidade para continuar.';
+      err3.style.display = 'block';
+    }
+    return;
+  }
+  if (err3) err3.style.display = 'none';
+
   var btn = document.getElementById('btn-submit');
   btn.textContent = 'A enviar...';
   btn.disabled = true;
