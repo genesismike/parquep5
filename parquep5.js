@@ -92,7 +92,11 @@ function setExtraDisabled(id, disabled) {
 }
 
 window.scrollToForm = function() {
-  document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(function() {
+    var el = document.getElementById('nome');
+    if (el) el.focus();
+  }, 600);
 }
 
 window.showErr = function(step, msg) {
