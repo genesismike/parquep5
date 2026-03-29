@@ -19,7 +19,7 @@ function calcularDias(e, s) {
   return Math.floor((d2 - d1) / 86400000) + 1;
 }
 
-function calcularPreco() {
+window.calcularPreco = function() {
   var e = document.getElementById('entrada').value;
   var s = document.getElementById('saida').value;
   var t = document.getElementById('tipo').value;
@@ -91,23 +91,23 @@ function setExtraDisabled(id, disabled) {
   }
 }
 
-function scrollToForm() {
+window.scrollToForm = function() {
   document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
 }
 
-function showErr(step, msg) {
+window.showErr = function(step, msg) {
   var el = document.getElementById('err-' + step);
   if (!el) return;
   el.textContent = '\u26a0 ' + msg;
   el.classList.add('visible');
 }
 
-function clearErr(step) {
+window.clearErr = function(step) {
   var el = document.getElementById('err-' + step);
   if (el) { el.textContent = ''; el.classList.remove('visible'); }
 }
 
-function validate(step) {
+window.validate = function(step) {
   if (step === 1) {
     var n = document.getElementById('nome').value.trim();
     var t = document.getElementById('telefone').value.trim();
@@ -131,7 +131,7 @@ function validate(step) {
   }  return true;
 }
 
-function goToStep(step) {
+window.goToStep = function(step) {
   clearErr(currentStep);
   if (step > currentStep && !validate(currentStep)) return;
   for (var i = 1; i <= 3; i++) {
@@ -147,13 +147,13 @@ function goToStep(step) {
   document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
 }
 
-function fmtDate(v) {
+window.fmtDate = function(v) {
   if (!v) return '\u2014';
   var p = v.split('-');
   return p[2] + '/' + p[1] + '/' + p[0];
 }
 
-function getExtras() {
+window.getExtras = function() {
   var ex = [];
   if (document.getElementById('extra-lavagem').checked) ex.push('Lavagem completa (\u20ac30)');
   if (document.getElementById('extra-eletrico').checked) ex.push('Carregamento el\u00e9trico (\u20ac25)');
@@ -161,7 +161,7 @@ function getExtras() {
   return ex.join(', ') || 'Nenhum';
 }
 
-function buildSummary() {
+window.buildSummary = function() {
   var ent = document.getElementById('entrada').value;
   var sai = document.getElementById('saida').value;
   var tip = document.getElementById('tipo').value;
@@ -192,7 +192,7 @@ function buildSummary() {
     '<span style="font-size:11px;color:var(--gray);display:block;margin-top:2px">* Valor estimado, sujeito a confirma\u00e7\u00e3o</span>';
 }
 
-function showThankYou(d) {
+window.showThankYou = function(d) {
   document.body.classList.add('ty-active');
   ['section.hero', 'div.stats-strip', 'section.features', 'section.pricing', 'section.cta-strip', 'footer'].forEach(function(sel) {
     var el = document.querySelector(sel);
@@ -229,7 +229,7 @@ function showThankYou(d) {
   document.getElementById('ty-breakdown').innerHTML = brows;
 }
 
-function submitForm() {
+window.submitForm = function() {
   // Validar checkboxes obrigatórios
   var termos = document.getElementById('aceito-termos');
   var priv   = document.getElementById('aceito-privacidade');

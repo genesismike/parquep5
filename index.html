@@ -284,24 +284,24 @@ body.ty-active .hero,body.ty-active .stats-strip,body.ty-active .features,body.t
             <div class="form-group"><label>Email *</label><input type="email" id="email" placeholder="email@exemplo.pt"></div>
           </div>
           <div class="form-group"><label>Matr&iacute;cula</label><input type="text" id="matricula" placeholder="AA-00-BB"></div>
-          <div class="form-nav"><button class="btn-next" onclick="goToStep(2)">Seguinte &rarr;</button></div>
+          <div class="form-nav"><button class="btn-next" onclick="window.goToStep(2)">Seguinte &rarr;</button></div>
         </div>
         <!-- PASSO 2 -->
         <div class="form-step" id="step-2">
           <div class="step-title">Passo 2 / 3 &mdash; Estadia e servi&ccedil;os</div>
           <div id="err-2" class="form-error"></div>
           <div class="form-row">
-            <div class="form-group"><label>Data de entrada *</label><input type="date" id="entrada" onchange="calcularPreco()"></div>
+            <div class="form-group"><label>Data de entrada *</label><input type="date" id="entrada" onchange="window.calcularPreco()"></div>
             <div class="form-group"><label>Hora de entrada</label><input type="time" id="hora-entrada"></div>
           </div>
           <div class="form-group"><label>N&ordm; voo de partida</label><input type="text" id="voo-partida" placeholder="ex: TP234" oninput="this.value=this.value.toUpperCase()"></div>
           <div class="form-row">
-            <div class="form-group"><label>Data de sa&iacute;da *</label><input type="date" id="saida" onchange="calcularPreco()"></div>
+            <div class="form-group"><label>Data de sa&iacute;da *</label><input type="date" id="saida" onchange="window.calcularPreco()"></div>
             <div class="form-group"><label>Hora de sa&iacute;da</label><input type="time" id="hora-saida"></div>
           </div>
           <div class="form-group"><label>N&ordm; voo de regresso</label><input type="text" id="voo-regresso" placeholder="ex: TP235" oninput="this.value=this.value.toUpperCase()"></div>
           <div class="form-group"><label>Tipo de estacionamento *</label>
-            <select id="tipo" onchange="calcularPreco()">
+            <select id="tipo" onchange="window.calcularPreco()">
               <option value="">Selecione...</option>
               <option value="Descoberto">Descoberto</option>
               <option value="Toldo">Toldo</option>
@@ -390,19 +390,19 @@ body.ty-active .hero,body.ty-active .stats-strip,body.ty-active .features,body.t
         <div class="price-type">Op&ccedil;&atilde;o econ&oacute;mica</div><h3>Descoberto</h3>
         <div class="price-desde">Desde</div><div class="price-valor">&euro;5<span>/dia</span></div>
         <ul class="price-features"><li><span class="check">&#10003;</span> Transfer gratuito 24h</li><li><span class="check">&#10003;</span> CCTV permanente</li><li><span class="check">&#10003;</span> Pagamento no regresso</li></ul>
-        <button class="btn-price" onclick="scrollToForm()">Reservar</button>
+        <button class="btn-price" onclick="window.scrollToForm()">Reservar</button>
       </div>
       <div class="price-card featured">
         <div class="price-type">Mais conforto</div><h3>Toldo</h3>
         <div class="price-desde">Desde</div><div class="price-valor">&euro;6<span>/dia</span></div>
         <ul class="price-features"><li><span class="check">&#10003;</span> Transfer gratuito 24h</li><li><span class="check">&#10003;</span> Protegido do sol e chuva</li><li><span class="check">&#10003;</span> CCTV permanente</li></ul>
-        <button class="btn-price red" onclick="scrollToForm()">Reservar</button>
+        <button class="btn-price red" onclick="window.scrollToForm()">Reservar</button>
       </div>
       <div class="price-card">
         <div class="price-type">M&aacute;xima prote&ccedil;&atilde;o</div><h3>Coberto</h3>
         <div class="price-desde">Desde</div><div class="price-valor">&euro;8<span>/dia</span></div>
         <ul class="price-features"><li><span class="check">&#10003;</span> Transfer gratuito 24h</li><li><span class="check">&#10003;</span> Totalmente coberto</li><li><span class="check">&#10003;</span> CCTV permanente</li></ul>
-        <button class="btn-price" onclick="scrollToForm()">Reservar</button>
+        <button class="btn-price" onclick="window.scrollToForm()">Reservar</button>
       </div>
     </div>
   </div>
@@ -412,7 +412,7 @@ body.ty-active .hero,body.ty-active .stats-strip,body.ty-active .features,body.t
   <h2>Pronto para reservar?</h2>
   <p>Estacionamento junto ao Aeroporto de Lisboa &mdash; Transfer gr&aacute;tis inclu&iacute;do</p>
   <div class="cta-buttons">
-    <button class="btn-white" onclick="scrollToForm()">Fazer Reserva</button>
+    <button class="btn-white" onclick="window.scrollToForm()">Fazer Reserva</button>
     <a href="tel:+351215954758" class="btn-outline-white">&#128222; +351 215 954 758</a>
   </div>
 </section>
@@ -431,7 +431,11 @@ body.ty-active .hero,body.ty-active .stats-strip,body.ty-active .features,body.t
     <a href="faq.html">FAQ</a>
     <a href="termos.html">Termos e Condi&#231;&#245;es</a>
     <a href="privacidade.html">Pol&#237;tica de Privacidade</a>
-    <a     <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclama&#231;&#245;es</a>
+    <a     <a     <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclama&#231;&#245;es</a>
   </div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></scrip
+<script data-cfasync="false">
+window.toggleMenu=function(){var m=document.getElementById('nav-mobile');if(m)m.classList.toggle('open');};
+</script>
+</body>
+</html>
