@@ -417,6 +417,53 @@ body.ty-active .hero,body.ty-active .stats-strip,body.ty-active .features,body.t
   </div>
 </section>
 
+
+<!-- THANK YOU PAGE -->
+<div id="ty-page">
+  <div class="ty-hero">
+    <div class="ty-hero-inner">
+      <div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px">Pedido recebido</div>
+      <h2>Obrigado,<br><em id="ty-nome">Cliente</em>!</h2>
+      <p>O seu pedido de reserva foi recebido. Confirmamos a disponibilidade e entramos em contacto <strong>em menos de 1 hora</strong>.</p>
+      <div style="margin-top:20px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);padding:10px 18px;border-radius:6px">
+        <span style="font-size:12px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px">Refer&ecirc;ncia</span>
+        <strong id="ty-ref" style="color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:1px">P5-XXXX</strong>
+      </div>
+    </div>
+  </div>
+  <div class="ty-main">
+    <div class="ty-grid">
+      <div class="ty-card ty-card-full">
+        <div class="ty-card-title">&#128197; Detalhes da reserva</div>
+        <div class="ty-row"><span class="ty-lbl">Nome</span><span id="ty-d-nome" class="ty-val">&mdash;</span></div>
+        <div class="ty-row"><span class="ty-lbl">Telefone</span><span id="ty-d-tel" class="ty-val">&mdash;</span></div>
+        <div class="ty-row"><span class="ty-lbl">Email</span><span id="ty-d-email" class="ty-val">&mdash;</span></div>
+        <div class="ty-row" id="ty-row-mat"><span class="ty-lbl">Matr&iacute;cula</span><span id="ty-d-mat" class="ty-val">&mdash;</span></div>
+        <div class="ty-row"><span class="ty-lbl">Tipo</span><span id="ty-d-tipo" class="ty-val">&mdash;</span></div>
+        <div class="ty-row"><span class="ty-lbl">Dura&ccedil;&atilde;o</span><span id="ty-d-dias" class="ty-val">&mdash;</span></div>
+        <div class="ty-row"><span class="ty-lbl">Extras</span><span id="ty-d-extras" class="ty-val">&mdash;</span></div>
+        <div class="ty-row" id="ty-row-notas" style="display:none"><span class="ty-lbl">Notas</span><span id="ty-d-notas" class="ty-val">&mdash;</span></div>
+      </div>
+      <div class="ty-card">
+        <div class="ty-card-title">&#9992; Voos</div>
+        <div class="ty-row"><span class="ty-lbl">Entrada</span><span id="ty-entrada" class="ty-val">&mdash;</span></div>
+        <div class="ty-row"><span id="ty-voo-p" style="font-size:13px;color:var(--red)"></span></div>
+        <div class="ty-row"><span class="ty-lbl">Sa&iacute;da</span><span id="ty-saida" class="ty-val">&mdash;</span></div>
+        <div class="ty-row"><span id="ty-voo-r" style="font-size:13px;color:var(--red)"></span></div>
+      </div>
+      <div class="ty-card">
+        <div class="ty-card-title">&#128176; Estimativa</div>
+        <div id="ty-breakdown"></div>
+        <div class="ty-total">&#8364;<span id="ty-total-num">0,00</span></div>
+        <div style="font-size:11px;color:var(--gray);margin-top:4px">* Valor estimado. Pagamento no regresso.</div>
+      </div>
+    </div>
+    <div class="ty-cta">
+      <a href="localizacao.html" class="ty-btn-p">&#128205; Como chegar</a>
+      <button class="ty-btn-s" onclick="window.location.reload()">&#8592; Nova reserva</button>
+    </div>
+  </div>
+</div>
 </main>
 <footer>
   <div class="footer-info">
