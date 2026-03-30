@@ -11,12 +11,38 @@ var TARIFAS = {
   "Coberto":    { tabela:[0,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,192,200,208,216,224,232,240,248], surcharge:8 }
 };
 
-var currentStep = 1;
+var currentStep = 0;
+
+// Títulos do header por passo
+var STEP_HEADERS = {
+  0: { title: 'Simule a sua estadia',  sub: 'Veja o pre\u00e7o antes de reservar' },
+  1: { title: 'Os seus dados',         sub: 'Passo 1 de 3' },
+  2: { title: 'Estadia e servi\u00e7os', sub: 'Passo 2 de 3' },
+  3: { title: 'Confirma\u00e7\u00e3o',  sub: 'Passo 3 de 3 \u2014 Confirmamos em menos de 1h' }
+};
 
 function calcularDias(e, s) {
   var d1 = new Date(e + 'T00:00:00'), d2 = new Date(s + 'T00:00:00');
   if (isNaN(d1) || isNaN(d2) || d2 <= d1) return 0;
   return Math.floor((d2 - d1) / 86400000) + 1;
+}
+
+window.calcularSimulacao = function() {
+  var e = document.getElementById('s0-entrada').value;
+  var s = document.getElementById('s0-saida').value;
+  var t = document.getElementById('s0-tipo').value;
+  var disp = document.getElementById('price-display-0');
+  if (!e || !s || !t) { disp.classList.remove('visible'); return; }
+  var dias = calcularDias(e, s);
+  if (dias <= 0) { disp.classList.remove('visible'); return; }
+  var tar = TARIFAS[t];
+  var base = dias <= 30 ? tar.tabela[dias] : tar.tabela[30] + (dias - 30) * tar.surcharge;
+  document.getElementById('s0-price-total').textContent = base.toFixed(2).replace('.', ',');
+  document.getElementById('s0-price-days').textContent = dias;
+  document.getElementById('s0-price-breakdown').innerHTML =
+    t + ' \u00b7 ' + dias + ' dia' + (dias > 1 ? 's' : '') + ': <strong>\u20ac' + base.toFixed(2).replace('.', ',') + '</strong>' +
+    (dias > 30 ? ' <span style="color:rgba(255,255,255,.4)">(base \u20ac' + tar.tabela[30] + ' + ' + (dias - 30) + ' dias \u00d7 \u20ac' + tar.surcharge + ')</span>' : '');
+  disp.classList.add('visible');
 }
 
 window.calcularPreco = function() {
@@ -92,9 +118,10 @@ function setExtraDisabled(id, disabled) {
 }
 
 window.scrollToForm = function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (currentStep !== 0) window.goToStep(0);
+  document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
   setTimeout(function() {
-    var el = document.getElementById('nome');
+    var el = document.getElementById('s0-entrada');
     if (el) el.focus();
   }, 600);
 }
@@ -112,6 +139,17 @@ window.clearErr = function(step) {
 }
 
 window.validate = function(step) {
+  if (step === 0) {
+    var ent = document.getElementById('s0-entrada').value;
+    var sai = document.getElementById('s0-saida').value;
+    var tip = document.getElementById('s0-tipo').value;
+    if (!ent) { showErr(0, 'Por favor indique a data de entrada.'); return false; }
+    if (!sai) { showErr(0, 'Por favor indique a data de sa\u00edda.'); return false; }
+    if (!tip) { showErr(0, 'Por favor selecione o tipo de estacionamento.'); return false; }
+    if (calcularDias(ent, sai) <= 0) { showErr(0, 'A data de sa\u00edda deve ser posterior \u00e0 de entrada.'); return false; }
+    var agora = new Date(); agora.setHours(0,0,0,0);
+    if (new Date(ent + 'T00:00:00') < agora) { showErr(0, 'A data de entrada n\u00e3o pode ser no passado.'); return false; }
+  }
   if (step === 1) {
     var n = document.getElementById('nome').value.trim();
     var t = document.getElementById('telefone').value.trim();
@@ -126,27 +164,58 @@ window.validate = function(step) {
     var sai = document.getElementById('saida').value;
     var tip = document.getElementById('tipo').value;
     if (!ent) { showErr(2, 'Por favor indique a data de entrada.'); return false; }
-    if (!sai) { showErr(2, 'Por favor indique a data de saída.'); return false; }
+    if (!sai) { showErr(2, 'Por favor indique a data de sa\u00edda.'); return false; }
     if (!tip) { showErr(2, 'Por favor selecione o tipo de estacionamento.'); return false; }
-    if (calcularDias(ent, sai) <= 0) { showErr(2, 'A data de saída deve ser posterior à de entrada.'); return false; }
+    if (calcularDias(ent, sai) <= 0) { showErr(2, 'A data de sa\u00edda deve ser posterior \u00e0 de entrada.'); return false; }
     var agora = new Date();
     var dtEntrada = horaEnt ? new Date(ent + 'T' + horaEnt + ':00') : new Date(ent + 'T00:00:00');
-    if (dtEntrada < agora) { showErr(2, 'A data e hora de entrada não pode ser no passado.'); return false; }
-  }  return true;
+    if (dtEntrada < agora) { showErr(2, 'A data e hora de entrada n\u00e3o pode ser no passado.'); return false; }
+  }
+  return true;
 }
 
 window.goToStep = function(step) {
   clearErr(currentStep);
   if (step > currentStep && !validate(currentStep)) return;
-  for (var i = 1; i <= 3; i++) {
-    var d = document.getElementById('dot-' + i);
-    d.className = 'step-dot';
-    if (i < step) d.classList.add('done');
-    else if (i === step) d.classList.add('active');
+
+  // Dots: só visíveis nos passos 1-3; passo 0 esconde
+  var ind = document.getElementById('step-indicator');
+  if (step === 0) {
+    if (ind) ind.style.display = 'none';
+  } else {
+    if (ind) ind.style.display = 'flex';
+    for (var i = 1; i <= 3; i++) {
+      var d = document.getElementById('dot-' + i);
+      d.className = 'step-dot';
+      if (i < step) d.classList.add('done');
+      else if (i === step) d.classList.add('active');
+    }
   }
+
+  // Header dinâmico
+  var h = STEP_HEADERS[step];
+  if (h) {
+    var t = document.getElementById('form-card-title');
+    var s = document.getElementById('form-card-sub');
+    if (t) t.textContent = h.title;
+    if (s) s.textContent = h.sub;
+  }
+
   document.getElementById('step-' + currentStep).classList.remove('active');
   document.getElementById('step-' + step).classList.add('active');
   currentStep = step;
+
+  // Pré-preencher passo 2 com dados do passo 0
+  if (step === 2) {
+    var e0 = document.getElementById('s0-entrada').value;
+    var s0 = document.getElementById('s0-saida').value;
+    var t0 = document.getElementById('s0-tipo').value;
+    if (e0) document.getElementById('entrada').value = e0;
+    if (s0) document.getElementById('saida').value = s0;
+    if (t0) { document.getElementById('tipo').value = t0; }
+    window.calcularPreco();
+  }
+
   if (step === 3) buildSummary();
   document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
 }
@@ -288,3 +357,15 @@ window.submitForm = function() {
     showThankYou(data);
   });
 }
+
+// ── Listeners do passo 0 via DOMContentLoaded (imune ao Cloudflare) ──
+document.addEventListener('DOMContentLoaded', function() {
+  var s0e = document.getElementById('s0-entrada');
+  var s0s = document.getElementById('s0-saida');
+  var s0t = document.getElementById('s0-tipo');
+  var btn = document.getElementById('btn-step0-next');
+  if (s0e) s0e.addEventListener('change', window.calcularSimulacao);
+  if (s0s) s0s.addEventListener('change', window.calcularSimulacao);
+  if (s0t) s0t.addEventListener('change', window.calcularSimulacao);
+  if (btn) btn.addEventListener('click', function() { window.goToStep(1); });
+});
