@@ -197,13 +197,11 @@ window.buildSummary = function() {
 }
 
 window.showThankYou = function(d) {
+  try { sessionStorage.setItem('p5_reserva', JSON.stringify(d)); } catch(e) {}
+  window.location.href = '/obrigado';
+  return;
+  // código abaixo mantido como fallback mas nunca executado
   document.body.classList.add('ty-active');
-  ['section.hero', 'div.stats-strip', 'section.features', 'section.pricing', 'section.cta-strip', 'footer'].forEach(function(sel) {
-    var el = document.querySelector(sel);
-    if (el) el.style.display = 'none';
-  });
-  document.getElementById('ty-page').style.display = 'block';
-  window.scrollTo(0, 0);
 
   document.getElementById('ty-nome').textContent = (d.nome || '').split(' ')[0] || 'Cliente';
   document.getElementById('ty-ref').textContent = 'P5-' + Date.now().toString(36).slice(-4).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase();
