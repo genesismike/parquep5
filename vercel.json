@@ -6,6 +6,7 @@
     { "source": "/localizacao", "destination": "/localizacao.html" },
     { "source": "/quem-somos", "destination": "/quem-somos.html" },
     { "source": "/termos", "destination": "/termos.html" },
-    { "source": "/privacidade", "destination": "/privacidade.html" }
+    { "source": "/privacidade", "destination": "/privacidade.html" },
+    { "source": "/transfer", "destination": "/transfer.html" }
   ]
 }
