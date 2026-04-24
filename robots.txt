@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /obrigado
+
+Sitemap: https://lp.parque5.pt/sitemap.xml
